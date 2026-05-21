@@ -885,7 +885,16 @@
       renderForm();
       document.getElementById('form-card').scrollIntoView({behavior:'smooth', block:'nearest'});
     } else {
-      showSuccess();
+      fetch('https://hook.eu2.make.com/ts7i51996uu13njjcshqipe9tb3e3m7q', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      }).then(() => {
+        showSuccess();
+        document.getElementById('form-card').scrollIntoView({behavior:'smooth', block:'nearest'});
+      }).catch(() => {
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+      });
     }
   }
 
