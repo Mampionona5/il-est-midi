@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Il Est Midi | Emplacements réguliers pour foodtrucks</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FFF6E9;
+    --warm-white: #FFF6E9;
+    --charcoal: #0F3D2E;
+    --charcoal-soft: #1A5C44;
+    --muted: #4A6B5A;
+    --muted-light: #7A8F80;
+    --orange: #FF8C42;
+    --orange-light: #FFC945;
+    --orange-pale: #FFEBC8;
+    --green: #0F3D2E;
+    --green-pale: #E7F1EA;
+    --border: rgba(15,61,46,0.12);
+    --border-soft: rgba(15,61,46,0.06);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Satoshi', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: rgba(253,251,247,0.92);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(15,61,46,0.06);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.55rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--charcoal);
+    text-decoration: none;
+  }
+  .nav-logo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--orange); display: inline-block;
+  }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--green); color: #fff;
+    padding: 0.55rem 1.2rem; border-radius: 2rem;
+    font-size: 0.85rem; font-weight: 500; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--charcoal-soft); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    padding: 5rem 3rem 4rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--orange-pale); color: var(--orange);
+    padding: 0.35rem 0.9rem; border-radius: 2rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em;
+    margin-bottom: 2.2rem; width: fit-content;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--orange); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.6rem, 4vw, 3.6rem);
+    line-height: 1.13;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--orange);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: var(--green); color: #fff;
+    padding: 0.85rem 1.8rem; border-radius: 3rem;
+    font-size: 0.95rem; font-weight: 500; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--charcoal-soft); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: transparent; color: var(--green);
+    padding: 0.85rem 1.8rem; border-radius: 3rem;
+    border: 1px solid rgba(166,196,162,0.6);
+    font-size: 0.95rem; font-weight: 500; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(166,196,162,0.12); border-color: var(--green); }
+
+  .hero-pills {
+    display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 2.5rem;
+  }
+  .hero-pill {
+    font-size: 0.78rem; color: var(--muted);
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem; background: #fff;
+  }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .hero-card {
+    position: absolute; bottom: 2.5rem; left: -1.5rem;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1rem 1.4rem;
+    box-shadow: 0 16px 40px rgba(15,61,46,0.12);
+    min-width: 200px;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .hero-card-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .hero-card-value { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--green); }
+  .hero-card-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+  .hero-card2 {
+    position: absolute; top: 3rem; right: 1.5rem;
+    background: var(--charcoal);
+    border-radius: 1rem;
+    padding: 0.9rem 1.2rem;
+    color: #fff;
+    min-width: 170px;
+    animation: float 4s ease-in-out infinite 2s;
+  }
+  .hero-card2-label { font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-bottom: 0.3rem; }
+  .hero-card2-value { font-family: 'DM Serif Display', serif; font-size: 1.3rem; font-weight: 700; }
+  .hero-card2-sub { font-size: 0.75rem; color: rgba(255,255,255,0.55); margin-top: 0.15rem; }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 1.2rem;
+  }
+  h2.section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1.18; font-weight: 700;
+    color: var(--charcoal);
+    max-width: 580px;
+    margin-bottom: 1.5rem;
+  }
+  h2.section-title em { font-style: italic; color: var(--orange); }
+
+  /* ABOUT */
+  .about {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .about-features { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+  .about-feature {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    background: rgba(166,196,162,0.15);
+  }
+  .about-feature:last-child { padding-bottom: 1.2rem; }
+  .about-feature-icon {
+    width: 40px; height: 40px; border-radius: 0.75rem;
+    background: var(--orange-pale); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; font-size: 1.1rem;
+  }
+  .about-feature-title { font-weight: 500; color: var(--charcoal); margin-bottom: 0.3rem; }
+  .about-feature-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .about-visual {
+    position: relative; height: 440px;
+    border-radius: 1.5rem; overflow: hidden;
+    background: var(--charcoal);
+  }
+  .about-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+  .about-overlay {
+    position: absolute; inset: 0;
+    background: rgba(15,61,46,0.7);
+    display: flex; align-items: flex-end; padding: 2rem;
+  }
+  .about-overlay-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; font-style: italic;
+    color: #fff; line-height: 1.4;
+  }
+
+  /* HOW */
+  .how { background: var(--warm-white); }
+  .how-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    margin-top: 3.5rem; margin-bottom: 4rem;
+  }
+  .how-step {
+    position: relative;
+    padding: 2rem;
+    background: var(--cream);
+    border-radius: 1.25rem;
+    border: 1px solid var(--border-soft);
+  }
+  .how-step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem; font-weight: 700;
+    color: var(--orange); opacity: 0.2;
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .how-step-title { font-weight: 500; font-size: 1.05rem; color: var(--charcoal); margin-bottom: 0.6rem; }
+  .how-step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .how-extras {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  }
+  .how-extra {
+    padding: 1.4rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: #fff;
+  }
+  .how-extra-title { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .how-extra-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+  .how-cta { margin-top: 3rem; }
+
+  /* BENEFITS */
+  .benefits {
+    background: var(--green);
+    color: #fff;
+  }
+  .benefits .section-label { color: rgba(255,255,255,0.4); }
+  .benefits h2.section-title { color: #fff; }
+  .benefits h2.section-title em { color: var(--orange-light); }
+  .benefits-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; margin-top: 3rem; align-items: start;
+  }
+  .benefits-tags {
+    display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0;
+  }
+  .benefit-tag {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    transition: background 0.2s;
+  }
+  .benefit-tag::before {
+    content: '✓';
+    color: var(--orange-light);
+    font-weight: 700; font-size: 0.8rem;
+  }
+  .benefits-quote {
+    padding: 2.5rem;
+    border-radius: 1.25rem;
+    position: relative;
+    background: rgba(255,255,255,0.06);
+  }
+  .benefits-quote::before {
+    content: '"';
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem; line-height: 1;
+    color: var(--orange); opacity: 0.4;
+    position: absolute; top: 0.5rem; left: 1.5rem;
+  }
+  .benefits-quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem; font-style: italic;
+    line-height: 1.5; color: rgba(255,255,255,0.9);
+    margin-top: 1.5rem;
+  }
+  .benefits-quote-text em { color: var(--orange-light); font-style: normal; }
+
+  /* DEMAND */
+  .demand { background: var(--cream); }
+  .demand-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .demand-card {
+    background: #fff;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    box-shadow: 0 14px 32px rgba(15,61,46,0.08);
+  }
+  .demand-card-icon {
+    width: 48px; height: 48px; border-radius: 0.75rem;
+    background: var(--orange-pale); color: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1.2rem;
+  }
+  .demand-card-title { font-weight: 500; font-size: 1rem; margin-bottom: 0.6rem; }
+  .demand-card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* FORM / CTA */
+  .cta-section {
+    background: var(--warm-white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+  }
+  .cta-left { padding-top: 1rem; }
+  .cta-left p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; max-width: 380px; margin-bottom: 2rem; }
+  .form-card {
+    background: var(--cream);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 18px 44px rgba(15,61,46,0.12);
+  }
+  .form-header {
+    background: var(--green); color: #fff;
+    border-radius: 1rem; padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .form-header-step { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.3rem; }
+  .form-header-q { font-weight: 500; font-size: 1rem; }
+  .progress-bar {
+    height: 3px; background: rgba(255,255,255,0.15);
+    border-radius: 2px; margin-top: 1rem; overflow: hidden;
+  }
+  .progress-fill { height: 100%; background: var(--orange-light); width: 0%; transition: width 0.5s; }
+  .form-input {
+    width: 100%; padding: 0.85rem 1rem;
+    border: 1px solid rgba(15,61,46,0.18);
+    border-radius: 0.75rem; font-size: 0.95rem;
+    font-family: 'Satoshi', sans-serif;
+    background: #fff; color: var(--charcoal);
+    outline: none; margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--green); }
+  .form-input::placeholder { color: var(--muted-light); }
+  .form-select {
+    width: 100%; padding: 0.85rem 1rem;
+    border: 1px solid rgba(15,61,46,0.18);
+    border-radius: 0.75rem; font-size: 0.95rem;
+    font-family: 'Satoshi', sans-serif;
+    background: #fff; color: var(--charcoal);
+    outline: none; margin-bottom: 1rem;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .form-select:focus { border-color: var(--green); }
+  .form-checkbox-group {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .form-checkbox-item {
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .form-checkbox-item input {
+    width: 18px; height: 18px;
+    cursor: pointer;
+    accent-color: var(--green);
+  }
+  .form-checkbox-item label {
+    cursor: pointer; font-size: 0.95rem;
+  }
+  .form-submit {
+    width: 100%; padding: 0.95rem;
+    background: var(--green); color: #fff;
+    border: none; border-radius: 2rem;
+    font-size: 0.95rem; font-weight: 500;
+    font-family: 'Satoshi', sans-serif;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
+  }
+  .form-submit:hover { background: var(--charcoal-soft); transform: translateY(-1px); }
+  .form-note { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 1rem; }
+
+  /* FAQ */
+  .faq { background: var(--cream); }
+  .faq-list { margin-top: 3rem; max-width: 700px; }
+  .faq-item {
+    background: #fff;
+    border-radius: 1rem;
+    margin-bottom: 0.9rem;
+    box-shadow: 0 12px 28px rgba(15,61,46,0.08);
+  }
+  .faq-q {
+    padding: 1.2rem 1.4rem;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 500; font-size: 0.95rem;
+    user-select: none;
+  }
+  .faq-q:hover { color: var(--orange); }
+  .faq-chevron { transition: transform 0.3s; color: var(--muted); font-size: 1rem; }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--orange); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    font-size: 0.9rem; color: var(--muted);
+    line-height: 1.7; transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 1.4rem;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.2rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--green); color: rgba(255,255,255,0.7);
+    padding: 4rem;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: #fff;
+    margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .footer-desc { font-size: 0.85rem; line-height: 1.65; max-width: 260px; }
+  footer h4 { color: #fff; font-weight: 500; font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  footer ul li a { font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  footer ul li a:hover { color: #fff; }
+  footer ul li { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+  .footer-bottom {
+    background: var(--green); color: rgba(255,255,255,0.3);
+    padding: 1.5rem 4rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.8rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 340px; }
+    .hero-left { padding: 4rem 2rem 3rem; }
+    section { padding: 4rem 2rem; }
+    .about, .cta-section { grid-template-columns: 1fr; gap: 3rem; }
+    .how-steps, .how-extras, .demand-cards { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="nav-logo-dot"></span>
+    Il Est Midi
+  </a>
+  <a class="nav-cta" href="#inscription">Je rejoins le pilote →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <h1>Remplissez votre calendrier avec des <em>emplacements réguliers.</em></h1>
+    <p class="hero-sub">Accédez à des entreprises déjà intéressées par votre concept et transformez vos journées creuses en chiffre d'affaires récurrent.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#inscription">Je veux mes prochains emplacements →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?w=1400&auto=format&fit=crop&q=80" alt="Foodtruck en service" />
+    <div class="hero-card">
+      <div class="hero-card-label">Cette semaine</div>
+      <div class="hero-card-value">+4 services</div>
+      <div class="hero-card-sub">confirmés ✓</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about fade-in" id="quoi">
+  <div>
+    <div class="section-label">Quoi</div>
+    <h2 class="section-title">Une plateforme qui sécurise vos <em>emplacements récurrents.</em></h2>
+    <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:2rem;">Il Est Midi connecte les foodtrucks avec des entreprises qui cherchent une offre déjeuner régulière. Vous gagnez en visibilité et en stabilité, sans démarchage.</p>
+    <a class="btn-primary" href="#inscription">Je veux en savoir plus →</a>
+    <div class="about-features">
+      <div class="about-feature">
+        <div class="about-feature-icon">🏢</div>
+        <div>
+          <div class="about-feature-title">Entreprises qualifiées</div>
+          <div class="about-feature-desc">Des sociétés qui cherchent activement à régaler leurs équipes au déjeuner.</div>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">📅</div>
+        <div>
+          <div class="about-feature-title">Emplacements récurrents</div>
+          <div class="about-feature-desc">On vous installe sur des spots qui reviennent chaque semaine.</div>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">📈</div>
+        <div>
+          <div class="about-feature-title">Plus de chiffre d'affaires</div>
+          <div class="about-feature-desc">Moins de jours creux, plus de services pleins, du CA prévisible.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual">
+    <img class="about-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&auto=format&fit=crop&q=80" alt="Cuisine de rue" />
+    <div class="about-overlay">
+      <div class="about-overlay-text">"Votre prochain spot rentable est peut-être à deux clics."</div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section class="demand fade-in" id="pour-qui">
+  <div class="section-label">Pour qui</div>
+  <h2 class="section-title">Pour les foodtrucks qui veulent <em>stabiliser leur activité.</em></h2>
+  <div class="demand-cards">
+    <div class="demand-card">
+      <div class="demand-card-icon">🏢</div>
+      <div class="demand-card-title">Street food qualitative</div>
+      <div class="demand-card-desc">Des concepts gourmands, identifiables et capables de servir rapidement sur un créneau déjeuner.</div>
+    </div>
+    <div class="demand-card">
+      <div class="demand-card-icon">📍</div>
+      <div class="demand-card-title">Disponibilités régulières</div>
+      <div class="demand-card-desc">Des foodtrucks prêts à caler 1 à 3 services fixes par semaine, sur des entreprises proches.</div>
+    </div>
+    <div class="demand-card">
+      <div class="demand-card-icon">🍽️</div>
+      <div class="demand-card-title">Envie de croissance</div>
+      <div class="demand-card-desc">Des équipes qui cherchent à remplir leur planning et à réduire la prospection.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits fade-in" id="pourquoi">
+  <div class="section-label">Pourquoi</div>
+  <h2 class="section-title">Pourquoi les foodtrucks <em>rejoignent</em> Il Est Midi.</h2>
+  <div class="benefits-grid">
+    <div class="benefits-tags">
+      <span class="benefit-tag">Calendrier mieux rempli</span>
+      <span class="benefit-tag">Revenus plus stables</span>
+      <span class="benefit-tag">Clients garantis</span>
+      <span class="benefit-tag">Précommandes avant service</span>
+      <span class="benefit-tag">Opportunités qualifiées</span>
+      <span class="benefit-tag">Croissance du chiffre d'affaires</span>
+      <span class="benefit-tag">Moins de prospection</span>
+      <span class="benefit-tag">Plus de service</span>
+    </div>
+    <div class="benefits-quote">
+      <div class="benefits-quote-text">Votre prochain spot rentable est peut-être à <em>deux clics.</em></div>
+      <div style="margin-top:2rem;">
+        <a class="btn-primary" href="#inscription">Je rejoins le lancement pilote →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM / CTA -->
+<section class="cta-section fade-in" id="inscription">
+  <div class="cta-left">
+    <div class="section-label">Inscription pilote</div>
+    <h2 class="section-title">Rejoignez les premiers <em>foodtrucks partenaires.</em></h2>
+    <p>Répondez à quelques questions pour recevoir des opportunités adaptées à votre activité. Nous contacterons en priorité les foodtrucks sélectionnés pour le lancement.</p>
+  </div>
+  <div class="form-card">
+    <div class="form-header">
+      <div class="form-header-step" id="form-step-label">Étape 1 / 4 · Identité</div>
+      <div class="form-header-q" id="form-question">Quel est le nom de votre foodtruck ?</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div id="form-body">
+      <input class="form-input" type="text" id="form-input" placeholder="Nom de votre foodtruck…" />
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:0.5rem;">
+      <button class="btn-ghost" id="btn-prev" style="flex:1;border-radius:2rem;padding:0.85rem;" onclick="prevQuestion()">Précédent</button>
+      <button class="form-submit" id="btn-next" style="flex:2;" onclick="nextQuestion()">Continuer →</button>
+    </div>
+    <p class="form-note" id="form-note">Nous contacterons en priorité les foodtrucks sélectionnés pour le lancement.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq fade-in">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Vous vous demandez peut-être…</h2>
+  <div class="faq-list" id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Combien coûte le service ? <span class="faq-chevron">▾</span></div>
+      <div class="faq-a">Le service est gratuit pour les foodtrucks pendant la phase pilote. Nous affinerons notre modèle tarifaire avec les retours de nos premiers partenaires.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Quand recevrai-je mes premières opportunités ? <span class="faq-chevron">▾</span></div>
+      <div class="faq-a">Dès la fin de votre inscription, notre équipe analyse votre profil et vous propose les premières opportunités sous 48 à 72h selon votre zone géographique.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Dois-je m'engager ? <span class="faq-chevron">▾</span></div>
+      <div class="faq-a">Aucun engagement. Vous restez libre d'accepter ou de refuser chaque opportunité proposée, et vous pouvez quitter le programme à tout moment.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Comment sélectionnez-vous les entreprises ? <span class="faq-chevron">▾</span></div>
+      <div class="faq-a">Nous collaborons uniquement avec des entreprises ayant exprimé un besoin actif de restauration sur site. Chaque partenaire est qualifié avant d'être présenté à nos foodtrucks.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Puis-je choisir mes disponibilités ? <span class="faq-chevron">▾</span></div>
+      <div class="faq-a">Absolument. Vous définissez vos jours et horaires de disponibilité dans votre profil, et nous ne vous proposons que des créneaux compatibles avec votre planning.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--orange);display:inline-block;"></span>
+      Il Est Midi
+    </div>
+    <p class="footer-desc">Le déjeuner, réinventé. Nous connectons les meilleurs foodtrucks avec les entreprises qui veulent régaler leurs équipes.</p>
+    <p style="font-size:0.82rem;margin-top:1.2rem;color:rgba(255,255,255,0.3);">hello@ilestmidi.fr</p>
+  </div>
+  <div>
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="#quoi">Concept</a></li>
+      <li><a href="#inscription">Inscription</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Légal</h4>
+    <ul>
+      <li><a href="#">Mentions légales</a></li>
+      <li><a href="#">Politique de confidentialité</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Il Est Midi. Tous droits réservés. Fait avec ❤️ pour la street food française.</span>
+  <a class="btn-primary" href="#inscription" style="font-size:0.82rem;padding:0.6rem 1.2rem;">Je veux mes emplacements →</a>
+</div>
+
+<script>
+  // FADE IN OBSERVER
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // FORM STEPS - 4 ÉTAPES, 15 QUESTIONS
+  const etapes = [
+    {
+      name: "Identité",
+      questions: [
+        { id: "q1", q: "Quel est le nom de votre foodtruck ?", type: "text", ph: "Nom de votre foodtruck…" },
+        { id: "q2", q: "Nom du responsable / gérant", type: "text", ph: "Votre nom…" },
+        { id: "q3", q: "Téléphone", type: "tel", ph: "+33 6 XX XX XX XX" },
+        { id: "q4", q: "Email", type: "email", ph: "votre@email.com" }
+      ]
+    },
+    {
+      name: "Zones & Cuisine",
+      questions: [
+        { id: "q5", q: "Dans quelle(s) ville(s) exercez-vous principalement ?", type: "text", ph: "Ex: Lyon, Paris, Bordeaux…" },
+        { id: "q6", q: "Rayon de déplacement", type: "select", options: ["10 km", "20 km", "30 km", "Plus de 30 km"] },
+        { id: "q7", q: "Type de cuisine", type: "text", ph: "Ex: Tacos, Burgers, Asiatique…" },
+        { id: "q8", q: "Options spécifiques proposées", type: "multiselect", options: ["Végétarien", "Vegan", "Sans gluten", "Halal", "Produits bio / locaux", "Autre"] },
+        { id: "q9", q: "Prix moyen par client", type: "text", ph: "Ex: 12€, 15€…" }
+      ]
+    },
+    {
+      name: "Activité",
+      questions: [
+        { id: "q10", q: "Type de repas / service proposé", type: "text", ph: "Ex: Déjeuner, Snack, Complet…" },
+        { id: "q11", q: "Acceptez-vous les précommandes ?", type: "select", options: ["Oui", "Non"] },
+        { id: "q12", q: "Jours de disponibilité", type: "text", ph: "Ex: Lun-Ven, Lun-Mer-Ven…" },
+        { id: "q13", q: "Fréquence de présence souhaitée", type: "select", options: ["Occasionnellement", "1 fois par semaine", "2 à 3 fois par semaine", "Plus de 3 fois par semaine"] }
+      ]
+    },
+    {
+      name: "Équipement & Expérience",
+      questions: [
+        { id: "q14", q: "Avez-vous besoin d'un branchement électrique ?", type: "select", options: ["Oui", "Non"] },
+        { id: "q15", q: "Avez-vous déjà travaillé en entreprise (événements, catering) ?", type: "select", options: ["Oui", "Non"] }
+      ]
+    }
+  ];
+
+  let currentEtape = 0;
+  let currentQuestion = 0;
+  let formData = {};
+
+  const progFill = document.getElementById('progress-fill');
+  const stepLabel = document.getElementById('form-step-label');
+  const stepQ = document.getElementById('form-question');
+  const formBody = document.getElementById('form-body');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const formNote = document.getElementById('form-note');
+
+  function getCurrentQ() {
+    return etapes[currentEtape].questions[currentQuestion];
+  }
+
+  function getTotalQuestions() {
+    let total = 0;
+    etapes.forEach(e => total += e.questions.length);
+    return total;
+  }
+
+  function getCurrentQIndex() {
+    let idx = 0;
+    for (let i = 0; i < currentEtape; i++) {
+      idx += etapes[i].questions.length;
+    }
+    return idx + currentQuestion + 1;
+  }
+
+  function renderQuestion() {
+    const q = getCurrentQ();
+    const totalQ = getTotalQuestions();
+    const qIdx = getCurrentQIndex();
+
+    stepLabel.textContent = `Étape ${currentEtape + 1} / 4 · ${etapes[currentEtape].name}`;
+    stepQ.textContent = q.q;
+    progFill.style.width = ((qIdx / totalQ) * 100) + '%';
+
+    btnPrev.style.opacity = (currentEtape === 0 && currentQuestion === 0) ? '0.4' : '1';
+    btnPrev.style.pointerEvents = (currentEtape === 0 && currentQuestion === 0) ? 'none' : 'auto';
+
+    formBody.innerHTML = '';
+
+    if (q.type === 'text' || q.type === 'email' || q.type === 'tel') {
+      const inp = document.createElement('input');
+      inp.className = 'form-input';
+      inp.type = q.type;
+      inp.placeholder = q.ph;
+      inp.value = formData[q.id] || '';
+      inp.addEventListener('change', (e) => { formData[q.id] = e.target.value; });
+      inp.addEventListener('input', (e) => { formData[q.id] = e.target.value; });
+      formBody.appendChild(inp);
+      setTimeout(() => inp.focus(), 100);
+    } else if (q.type === 'select') {
+      const sel = document.createElement('select');
+      sel.className = 'form-select';
+      const opt0 = document.createElement('option');
+      opt0.value = '';
+      opt0.textContent = 'Choisir…';
+      sel.appendChild(opt0);
+      q.options.forEach(opt => {
+        const option = document.createElement('option');
+        option.value = opt;
+        option.textContent = opt;
+        sel.appendChild(option);
+      });
+      sel.value = formData[q.id] || '';
+      sel.addEventListener('change', (e) => { formData[q.id] = e.target.value; });
+      formBody.appendChild(sel);
+      setTimeout(() => sel.focus(), 100);
+    } else if (q.type === 'multiselect') {
+      const grp = document.createElement('div');
+      grp.className = 'form-checkbox-group';
+      const current = formData[q.id] || [];
+      q.options.forEach(opt => {
+        const item = document.createElement('div');
+        item.className = 'form-checkbox-item';
+        const chk = document.createElement('input');
+        chk.type = 'checkbox';
+        chk.value = opt;
+        chk.checked = current.includes(opt);
+        chk.addEventListener('change', () => {
+          const vals = [];
+          grp.querySelectorAll('input[type="checkbox"]:checked').forEach(c => vals.push(c.value));
+          formData[q.id] = vals;
+        });
+        const lbl = document.createElement('label');
+        lbl.textContent = opt;
+        item.appendChild(chk);
+        item.appendChild(lbl);
+        grp.appendChild(item);
+      });
+      formBody.appendChild(grp);
+    }
+  }
+
+  function nextQuestion() {
+    const q = getCurrentQ();
+    const totalQ = getTotalQuestions();
+    const qIdx = getCurrentQIndex();
+
+    if (qIdx < totalQ) {
+      if (currentQuestion < etapes[currentEtape].questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+      } else if (currentEtape < etapes.length - 1) {
+        currentEtape++;
+        currentQuestion = 0;
+        renderQuestion();
+      } else {
+        progFill.style.width = '100%';
+        formBody.innerHTML = '<p style="color:var(--green);font-weight:500;font-size:1rem;text-align:center;padding:1rem 0;">✓ Merci ! Nous reviendrons vers vous très bientôt.</p>';
+        btnNext.style.display = 'none';
+        btnPrev.style.display = 'none';
+        formNote.textContent = "Votre candidature est bien enregistrée. À bientôt !";
+      }
+    }
+  }
+
+  function prevQuestion() {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    } else if (currentEtape > 0) {
+      currentEtape--;
+      currentQuestion = etapes[currentEtape].questions.length - 1;
+      renderQuestion();
+    }
+  }
+
+  renderQuestion();
+</script>
+</body>
+</html>

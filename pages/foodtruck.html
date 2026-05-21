@@ -335,52 +335,86 @@
   .demand-card-title { font-weight: 500; font-size: 1rem; margin-bottom: 0.6rem; }
   .demand-card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
-  /* FORM / CTA */
+  /* FORM / CTA (NOUVEAU STYLE) */
   .cta-section {
     background: var(--warm-white);
     display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
   }
   .cta-left { padding-top: 1rem; }
   .cta-left p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; max-width: 380px; margin-bottom: 2rem; }
+
   .form-card {
-    background: var(--cream);
+    background: #fff;
     border-radius: 1.5rem;
     padding: 2.5rem;
     box-shadow: 0 18px 44px rgba(15,61,46,0.12);
   }
-  .form-header {
-    background: var(--green); color: #fff;
-    border-radius: 1rem; padding: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .form-header-step { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.3rem; }
-  .form-header-q { font-weight: 500; font-size: 1rem; }
-  .progress-bar {
-    height: 3px; background: rgba(255,255,255,0.15);
-    border-radius: 2px; margin-top: 1rem; overflow: hidden;
-  }
-  .progress-fill { height: 100%; background: var(--orange-light); width: 0%; transition: width 0.5s; }
+  .form-progress-wrap { margin-bottom: 1.5rem; }
+  .form-progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .form-progress-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+  .form-progress-pct { font-size: 0.8rem; color: var(--green); font-weight: 700; }
+  .progress-track { height: 5px; background: rgba(15,61,46,0.1); border-radius: 3px; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.5s ease; }
+  
+  .form-header { margin: 1.2rem 0 1.4rem; background: transparent; padding: 0; color: var(--charcoal); }
+  .form-step-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; line-height: 1.2; color: var(--green); margin-bottom: 0.35rem; }
+  .form-step-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+  
+  .form-label { display: block; font-size: 0.86rem; color: var(--green); font-weight: 600; margin: 0 0 0.4rem; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-field.form-full { grid-column: 1 / -1; }
+  .form-field { margin-bottom: 1rem; }
+  
   .form-input {
-    width: 100%; padding: 0.85rem 1rem;
-    border: 1px solid rgba(15,61,46,0.18);
-    border-radius: 0.75rem; font-size: 0.95rem;
-    font-family: 'Satoshi', sans-serif;
+    width: 100%; padding: 0.85rem 1.1rem;
+    border: 1.5px solid rgba(15,61,46,0.15); border-radius: 0.75rem;
+    font-size: 0.95rem; font-family: 'Satoshi', sans-serif;
     background: #fff; color: var(--charcoal);
-    outline: none; margin-bottom: 1rem;
-    transition: border-color 0.2s;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .form-input:focus { border-color: var(--green); }
+  .form-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(15,61,46,0.08); }
   .form-input::placeholder { color: var(--muted-light); }
-  .form-submit {
-    width: 100%; padding: 0.95rem;
-    background: var(--green); color: #fff;
-    border: none; border-radius: 2rem;
-    font-size: 0.95rem; font-weight: 500;
-    font-family: 'Satoshi', sans-serif;
+  
+  .form-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .form-option {
+    padding: 0.7rem 1rem; border: 1.5px solid rgba(15,61,46,0.15); border-radius: 0.75rem;
+    font-size: 0.85rem; cursor: pointer; text-align: center; transition: all 0.2s;
+    background: #fff; color: var(--muted); font-family: 'Satoshi', sans-serif;
+  }
+  .form-option:hover {
+  border-color: var(--green); background: rgba(15,61,46,0.06); color: var(--green);
+  }
+/* État sélectionné mis en exergue */
+  .form-option.selected {
+    border-color: var(--green); 
+    background: var(--green); 
+    color: #ffffff; 
+    font-weight: 600; 
+    box-shadow: 0 4px 12px rgba(15,61,46,0.2);
+  }
+  
+  .form-nav { display: flex; gap: 1rem; margin-top: 1.5rem; }
+  .form-btn-prev {
+    flex: 1; padding: 0.85rem; border-radius: 3rem;
+    border: 1.5px solid rgba(15,61,46,0.2); background: transparent;
+    font-family: 'Satoshi', sans-serif; font-size: 0.9rem; color: var(--muted);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .form-btn-prev:hover { background: var(--cream); border-color: var(--green); }
+  .form-btn-next {
+    flex: 2; padding: 0.85rem; border-radius: 3rem;
+    background: var(--green); color: #fff; border: none;
+    font-family: 'Satoshi', sans-serif; font-size: 0.9rem; font-weight: 600;
     cursor: pointer; transition: background 0.2s, transform 0.15s;
   }
-  .form-submit:hover { background: var(--charcoal-soft); transform: translateY(-1px); }
-  .form-note { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 1rem; }
+  .form-btn-next:hover { background: var(--charcoal-soft); transform: translateY(-1px); }
+  .form-btn-next.yellow { background: var(--orange); color: #fff; }
+  .form-btn-next.yellow:hover { background: #e67e3a; }
+  
+  .form-success { text-align: center; padding: 2rem 1rem; }
+  .form-success-emoji { font-size: 3rem; margin-bottom: 1rem; }
+  .form-success-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--green); margin-bottom: 0.8rem; }
+  .form-success-text { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
 
   /* FAQ */
   .faq { background: var(--cream); }
@@ -450,14 +484,21 @@
     .about, .cta-section { grid-template-columns: 1fr; gap: 3rem; }
     .how-steps, .how-extras, .demand-cards { grid-template-columns: 1fr; }
     .benefits-grid { grid-template-columns: 1fr; }
+    .form-grid, .form-options { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; }
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem 2rem; }
   }
 </style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wuhq1fnjhi");
+</script>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
     <span class="nav-logo-dot"></span>
@@ -466,7 +507,6 @@
   <a class="nav-cta" href="#inscription">Je rejoins le pilote →</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-left">
     <h1>Remplissez votre calendrier avec des <em>emplacements réguliers.</em></h1>
@@ -485,7 +525,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about fade-in" id="quoi">
   <div>
     <div class="section-label">Quoi</div>
@@ -524,7 +563,6 @@
   </div>
 </section>
 
-<!-- POUR QUI -->
 <section class="demand fade-in" id="pour-qui">
   <div class="section-label">Pour qui</div>
   <h2 class="section-title">Pour les foodtrucks qui veulent <em>stabiliser leur activité.</em></h2>
@@ -547,7 +585,6 @@
   </div>
 </section>
 
-<!-- BENEFITS -->
 <section class="benefits fade-in" id="pourquoi">
   <div class="section-label">Pourquoi</div>
   <h2 class="section-title">Pourquoi les foodtrucks <em>rejoignent</em> Il Est Midi.</h2>
@@ -571,33 +608,15 @@
   </div>
 </section>
 
-<!-- FORM / CTA -->
 <section class="cta-section fade-in" id="inscription">
   <div class="cta-left">
-    <div class="section-label">Inscription pilote</div>
-    <h2 class="section-title">Rejoignez les premiers <em>foodtrucks partenaires.</em></h2>
-    <p>Répondez à quelques questions pour recevoir des opportunités adaptées à votre activité. Nous contacterons en priorité les foodtrucks sélectionnés pour le lancement.</p>
+    <h2 class="section-title">Rejoignez les premiers <em>foodtrucks partenaires</em></h2>
+    <p>Répondez à quelques questions pour recevoir des opportunités adaptées à votre activité</p>
   </div>
-  <div class="form-card">
-    <div class="form-header">
-      <div class="form-header-step" id="form-step-label">Étape 1 / 3 · Identité</div>
-      <div class="form-header-q" id="form-question">Quel est le nom de votre foodtruck ?</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-      </div>
+  <div class="form-card" id="form-card">
     </div>
-    <div id="form-body">
-      <input class="form-input" type="text" id="form-input" placeholder="Nom de votre foodtruck…" />
-    </div>
-    <div style="display:flex;gap:1rem;margin-top:0.5rem;">
-      <button class="btn-ghost" id="btn-prev" style="flex:1;border-radius:2rem;padding:0.85rem;" onclick="prevStep()">Précédent</button>
-      <button class="form-submit" id="btn-next" style="flex:2;" onclick="nextStep()">Continuer →</button>
-    </div>
-    <p class="form-note" id="form-note">Nous contacterons en priorité les foodtrucks sélectionnés pour le lancement.</p>
-  </div>
 </section>
 
-<!-- FAQ -->
 <section class="faq fade-in">
   <div class="section-label">FAQ</div>
   <h2 class="section-title">Vous vous demandez peut-être…</h2>
@@ -625,7 +644,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div>
     <div class="footer-logo">
@@ -673,51 +691,226 @@
     });
   });
 
-  // FORM STEPS
-  const steps = [
-    { label: "Étape 1 / 3 · Identité", q: "Quel est le nom de votre foodtruck ?", type: "text", ph: "Nom de votre foodtruck…" },
-    { label: "Étape 2 / 3 · Zone", q: "Dans quelle ville exercez-vous principalement ?", type: "text", ph: "Ex: Lyon, Paris, Bordeaux…" },
-    { label: "Étape 3 / 3 · Contact", q: "Quelle est votre adresse email ?", type: "email", ph: "votre@email.com" },
+  // MULTI-STEP FORM (Adapté de entreprise.html)
+  const STEPS = [
+    {
+      id: 'identity',
+      label: 'Étape 1 sur 4',
+      title: 'Identité',
+      subtitle: 'Parlez-nous un peu de vous.',
+      fields: [
+        {id: 'ft_name', label: "Nom de votre foodtruck", type: 'text', ph: 'Ex. Le Camion Fumeur', full: true},
+        {id: 'manager_name', label: 'Nom du responsable', type: 'text', ph: 'Ex. Jean Dupont', full: true},
+        {id: 'phone', label: 'Numéro de téléphone', type: 'tel', ph: 'Ex. 06 12 34 56 78', full: true},
+        {id: 'email', label: 'Adresse e-mail', type: 'email', ph: 'Ex. contact@lecamion.fr', full: true}
+      ]
+    },
+    {
+      id: 'zone_cuisine',
+      label: 'Étape 2 sur 4',
+      title: 'Zone & cuisine',
+      subtitle: 'Où et quoi servez-vous ?',
+      fields: [
+        {id: 'cities', label: 'Dans quelle(s) ville(s) intervenez-vous principalement ?', type: 'text', ph: 'Ex. Lyon et agglomération', full: true},
+        {
+          id: 'radius',
+          label: 'Quel est votre rayon de déplacement maximum ?',
+          type: 'options',
+          options: ['10 km', '20 km', '30 km', 'Plus de 30 km'],
+          full: true
+        },
+        {id: 'cuisine_type', label: 'Quel type de cuisine proposez-vous ?', type: 'text', ph: 'Ex. Burgers gourmets', full: true},
+        {
+          id: 'specifics',
+          label: 'Proposez-vous des options spécifiques ?',
+          type: 'multiOptions',
+          options: ['Végétarien', 'Vegan', 'Sans gluten', 'Halal', 'Produits bio / locaux', 'Autre'],
+          full: true
+        }
+      ]
+    },
+    {
+      id: 'capacity',
+      label: 'Étape 3 sur 4',
+      title: 'Capacité & fonctionnement',
+      subtitle: 'Vos volumes et vos dispos.',
+      fields: [
+        {id: 'avg_price', label: 'Quel est le prix moyen d’un repas ?', type: 'text', ph: 'Ex. 12€', full: true},
+        {id: 'max_meals', label: 'Combien de repas pouvez-vous servir sur un service du midi ?', type: 'text', ph: 'Ex. 60', full: true},
+        {
+          id: 'preorders',
+          label: 'Acceptez-vous les précommandes ?',
+          type: 'options',
+          options: ['Oui', 'Non'],
+          full: true
+        },
+        {
+          id: 'avail_days',
+          label: 'Quels jours êtes-vous disponibles pour intervenir en entreprise ?',
+          type: 'multiOptions',
+          options: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'],
+          full: true
+        }
+      ]
+    },
+    {
+      id: 'needs_exp',
+      label: 'Étape 4 sur 4',
+      title: 'Besoins & expérience',
+      subtitle: 'Vos attentes concernant les emplacements.',
+      fields: [
+        {
+          id: 'frequency',
+          label: 'À quelle fréquence souhaitez-vous obtenir des emplacements réguliers ?',
+          type: 'options',
+          options: ['Occasionnellement', '1 fois par semaine', '2 à 3 fois par semaine', 'Plus de 3 fois par semaine'],
+          full: true
+        },
+        {
+          id: 'electricity',
+          label: 'Avez-vous besoin d’un branchement électrique ?',
+          type: 'options',
+          options: ['Oui', 'Non'],
+          full: true
+        },
+        {
+          id: 'corporate_exp',
+          label: 'Intervenez-vous déjà dans des entreprises ?',
+          type: 'options',
+          options: ['Oui', 'Non'],
+          full: true
+        }
+      ]
+    }
   ];
-  let currentStep = 0;
-  const progFill = document.getElementById('progress-fill');
-  const stepLabel = document.getElementById('form-step-label');
-  const stepQ = document.getElementById('form-question');
-  const formInput = document.getElementById('form-input');
-  const btnPrev = document.getElementById('btn-prev');
-  const btnNext = document.getElementById('btn-next');
-  const formNote = document.getElementById('form-note');
 
-  function updateStep() {
-    const s = steps[currentStep];
-    stepLabel.textContent = s.label;
-    stepQ.textContent = s.q;
-    formInput.type = s.type;
-    formInput.placeholder = s.ph;
-    formInput.value = '';
-    progFill.style.width = ((currentStep / steps.length) * 100) + '%';
-    btnPrev.style.opacity = currentStep === 0 ? '0.4' : '1';
-    btnPrev.style.pointerEvents = currentStep === 0 ? 'none' : 'auto';
+  let currentStep = 0;
+  let formData = {};
+
+  function escapeAttr(value) {
+    return value.replace(/"/g, '&quot;');
+  }
+
+  function renderForm() {
+    const step = STEPS[currentStep];
+    const pct = Math.round((currentStep / (STEPS.length - 1)) * 100);
+    const card = document.getElementById('form-card');
+
+    const fieldHtml = step.fields.map((field) => {
+      if(field.type === 'text' || field.type === 'email' || field.type === 'tel') {
+        return `
+          <div class="form-field ${field.full ? 'form-full' : ''}">
+            <label class="form-label" for="f-${field.id}">${field.label}</label>
+            <input class="form-input" id="f-${field.id}" type="${field.type}" placeholder="${field.ph || ''}" value="${formData[field.id] || ''}" />
+          </div>
+        `;
+      }
+      if(field.type === 'options' || field.type === 'multiOptions') {
+        const isMulti = field.type === 'multiOptions';
+        const selected = formData[field.id] || (isMulti ? [] : '');
+        const btns = field.options.map((opt) => {
+          const safeOpt = escapeAttr(opt);
+          const isSelected = isMulti ? selected.includes(opt) : selected === opt;
+          return `<button type="button" class="form-option${isSelected ? ' selected' : ''}" data-option-group="${field.id}" data-value="${safeOpt}" data-multi="${isMulti}">${opt}</button>`;
+        }).join('');
+        return `
+          <div class="form-field form-full">
+            <div class="form-label">${field.label}</div>
+            <div class="form-options">${btns}</div>
+          </div>
+        `;
+      }
+      return '';
+    }).join('');
+
+    const isLast = currentStep === STEPS.length - 1;
+    const isFirst = currentStep === 0;
+
+    card.innerHTML = `
+      <div class="form-progress-wrap">
+        <div class="form-progress-meta">
+          <span class="form-progress-label">${step.label}</span>
+          <span class="form-progress-pct">${pct}%</span>
+        </div>
+        <div class="progress-track"><div class="progress-bar" style="width:${pct}%"></div></div>
+      </div>
+      <div class="form-header">
+        <div class="form-step-title">${step.title}</div>
+        <div class="form-step-sub">${step.subtitle}</div>
+      </div>
+      <div id="form-fields" class="form-grid">${fieldHtml}</div>
+      <div class="form-nav">
+        <button class="form-btn-prev" onclick="prevStep()" style="opacity:${isFirst?'.35':'1'};pointer-events:${isFirst?'none':'auto'}">← Précédent</button>
+        <button class="form-btn-next ${isLast?'yellow':''}" onclick="nextStep()">${isLast?'Valider ma demande':'Continuer'}</button>
+      </div>
+    `;
+
+    document.querySelectorAll('[data-option-group]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.optionGroup;
+        const val = btn.dataset.value;
+        const multi = btn.dataset.multi === 'true';
+        selectOption(id, val, btn, multi);
+      });
+    });
+  }
+
+  function selectOption(id, val, el, isMulti) {
+    if(isMulti) {
+      const current = formData[id] || [];
+      if(current.includes(val)) {
+        formData[id] = current.filter(v => v !== val);
+        el.classList.remove('selected');
+      } else {
+        formData[id] = [...current, val];
+        el.classList.add('selected');
+      }
+      return;
+    }
+    formData[id] = val;
+    document.querySelectorAll(`[data-option-group="${id}"]`).forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
   }
 
   function nextStep() {
-    if (currentStep < steps.length - 1) {
+    const step = STEPS[currentStep];
+    step.fields.forEach((field) => {
+      if(field.type === 'text' || field.type === 'email' || field.type === 'tel') {
+        const inp = document.getElementById(`f-${field.id}`);
+        if(inp) formData[field.id] = inp.value;
+      }
+    });
+    if(currentStep < STEPS.length - 1) {
       currentStep++;
-      updateStep();
+      renderForm();
+      document.getElementById('form-card').scrollIntoView({behavior:'smooth', block:'nearest'});
     } else {
-      progFill.style.width = '100%';
-      document.getElementById('form-body').innerHTML = '<p style="color:var(--green);font-weight:500;font-size:1rem;text-align:center;padding:1rem 0;">✓ Merci ! Nous reviendrons vers vous très bientôt.</p>';
-      btnNext.style.display = 'none';
-      btnPrev.style.display = 'none';
-      formNote.textContent = "Votre candidature est bien enregistrée. À bientôt !";
+      showSuccess();
     }
   }
 
   function prevStep() {
-    if (currentStep > 0) { currentStep--; updateStep(); }
+    if(currentStep > 0) { currentStep--; renderForm(); }
   }
 
-  updateStep();
+  function showSuccess() {
+    document.getElementById('form-card').innerHTML = `
+      <div class="form-success">
+        <div class="form-success-emoji" aria-hidden="true">👋</div>
+        <div class="form-success-title">Candidature enregistrée !</div>
+        <p class="form-success-text" style="color:var(--muted)">
+          Merci pour votre intérêt. Nous analyserons votre profil dans les plus brefs délais.<br><br>
+          Notre équipe vous contactera en priorité pour vous proposer vos premières opportunités.
+        </p>
+        <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;background:var(--cream);padding:.6rem 1.2rem;border-radius:3rem;font-size:.82rem;color:var(--green);font-weight:500">
+          ✓ Informations validées
+        </div>
+      </div>
+    `;
+  }
+
+  // Init form
+  renderForm();
 </script>
 </body>
 </html>

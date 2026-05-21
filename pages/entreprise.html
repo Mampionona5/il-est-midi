@@ -320,9 +320,18 @@ section{padding:6rem 4rem}
   font-size:.85rem;cursor:pointer;text-align:center;transition:all .2s;
   background:#fff;color:var(--text-muted);font-family:'Satoshi',sans-serif;
 }
-.form-option:hover,.form-option.selected{
-  border-color:var(--green);background:rgba(15,61,46,.06);color:var(--green);font-weight:500;
+.form-option:hover{
+   border-color: var(--green); background: rgba(15,61,46,0.06); color: var(--green);
 }
+/* État sélectionné mis en exergue */
+.form-option.selected {
+  border-color: var(--green); 
+  background: var(--green); 
+  color: #ffffff; 
+  font-weight: 600; 
+  box-shadow: 0 4px 12px rgba(15,61,46,0.2);
+}
+
 .form-checkbox-row{display:flex;align-items:flex-start;gap:.75rem;margin-top:.5rem}
 .form-checkbox{width:18px;height:18px;accent-color:var(--green);margin-top:2px;flex-shrink:0}
 .form-checkbox-label{font-size:.83rem;color:var(--text-muted);line-height:1.5}
@@ -450,6 +459,13 @@ footer{background:var(--green);padding:4rem;color:rgba(255,255,255,.7)}
   .form-options{grid-template-columns:1fr}
 }
 </style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wuhq1fnjhi");
+</script>
 </head>
 <body>
 
