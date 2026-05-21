@@ -958,7 +958,15 @@ function nextStep() {
     renderForm();
     document.getElementById('form-card').scrollIntoView({behavior:'smooth', block:'nearest'});
   } else {
-    showSuccess();
+    fetch('COLLE_TON_URL_MAKE_ICI', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    }).then(response => {
+      if(response.ok) {
+        showSuccess();
+      }
+  });
   }
 }
 
