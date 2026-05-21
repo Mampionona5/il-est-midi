@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Dépendances éventuelles
+node_modules/
+
+# Logs
+*.log
+
+# Backups & anciennes versions (non versionnés)
+*.backup.html
+*backup*
+*copy*
+pages/landing-entreprise.html
+

@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il est Midi — Rejoignez le réseau foodtruck</title>
+<link href="https://fonts.googleapis.com/css2?family=Belleza&family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bleu:#13236E;
+  --bleu-dark:#0b1542;
+  --bleu-mid:#1a2f90;
+  --bleu-pale:#e8ecf8;
+  --beige:#CDAC79;
+  --taupe:#A67C36;
+  --or:#D9B93F;
+  --or-light:#f0d060;
+  --or-pale:#fdf6e0;
+  --blanc:#FDFAF5;
+  --gris:#f3f0e8;
+  --texte:#1a1814;
+  --muted:#67604e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--blanc);color:var(--texte);overflow-x:hidden}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 3.5rem;
+  background:rgba(11,21,66,0.97);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(217,185,63,0.14);
+}
+.n-logo{display:flex;flex-direction:column;line-height:1.1}
+.n-logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.08em;color:var(--or)}
+.n-logo-sub{font-family:'Belleza',serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.n-links{display:flex;gap:2.5rem;list-style:none}
+.n-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.86rem;letter-spacing:.04em;transition:color .2s}
+.n-links a:hover{color:var(--or)}
+.n-cta{
+  background:var(--or);color:var(--bleu);border:none;border-radius:.625rem;
+  padding:.65rem 1.5rem;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.86rem;
+  cursor:pointer;letter-spacing:.02em;transition:all .2s;
+}
+.n-cta:hover{background:var(--or-light);transform:translateY(-1px)}
+
+/* ══ HERO ══ */
+.hero{
+  min-height:100svh;
+  background:var(--bleu-dark);
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:8rem 3.5rem 5rem;
+  gap:4rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg-orb{
+  position:absolute;right:-180px;top:50%;transform:translateY(-50%);
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,185,63,.07),transparent 65%);
+  pointer-events:none;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-left{position:relative;z-index:2}
+.h-eyebrow{
+  display:inline-flex;align-items:center;gap:.75rem;
+  color:var(--beige);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+  animation:up .7s ease both;
+}
+.h-eyebrow-line{width:32px;height:1.5px;background:var(--or)}
+.h-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,7.5vw,7rem);
+  line-height:.93;letter-spacing:.03em;
+  color:#fff;margin-bottom:1.25rem;
+  animation:up .7s .07s ease both;
+}
+.h-title .t-or{color:var(--or)}
+.h-title .t-out{
+  -webkit-text-stroke:1.5px rgba(255,255,255,.25);
+  color:transparent;
+}
+.h-sub{
+  font-family:'Belleza',serif;
+  font-size:clamp(.95rem,1.6vw,1.2rem);
+  color:rgba(255,255,255,.45);letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:2rem;
+  animation:up .7s .12s ease both;
+}
+.h-desc{
+  font-size:1.05rem;line-height:1.82;color:rgba(255,255,255,.62);
+  max-width:480px;margin-bottom:2.75rem;
+  animation:up .7s .17s ease both;
+}
+.h-desc strong{color:rgba(255,255,255,.92);font-weight:500}
+.h-ctas{display:flex;flex-direction:column;gap:.875rem;max-width:360px;animation:up .7s .22s ease both}
+.btn-primary{
+  background:var(--or);color:var(--bleu);border:none;border-radius:.75rem;
+  padding:1.1rem 1.75rem;font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;
+  cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:space-between;
+}
+.btn-primary:hover{background:var(--or-light);transform:translateY(-2px);box-shadow:0 10px 32px rgba(217,185,63,.28)}
+.btn-primary-icon{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(19,35,110,.18);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.h-trust{
+  display:flex;align-items:center;gap:.875rem;
+  color:rgba(255,255,255,.35);font-size:.8rem;
+}
+.h-avatars{display:flex}
+.h-av{
+  width:30px;height:30px;border-radius:50%;font-size:1rem;
+  background:var(--bleu-mid);border:2.5px solid var(--bleu-dark);
+  display:flex;align-items:center;justify-content:center;
+}
+.h-av+.h-av{margin-left:-8px}
+
+/* Hero right */
+.hero-right{position:relative;z-index:2;display:flex;flex-direction:column;gap:1.1rem}
+.h-card-main{
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:1.5rem;padding:2rem;
+  position:relative;overflow:hidden;
+}
+.h-card-main::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
+  background:linear-gradient(90deg,var(--or),var(--beige));
+}
+.hc-icon{font-size:3rem;margin-bottom:.875rem}
+.hc-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#fff;letter-spacing:.06em;margin-bottom:.2rem}
+.hc-type{color:var(--beige);font-size:.83rem;margin-bottom:1.5rem}
+.hc-stats{display:flex;gap:2rem}
+.hc-stat-v{font-size:1.4rem;font-weight:600;color:var(--or)}
+.hc-stat-l{font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem}
+.h-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:.875rem}
+.h-mini{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:1rem;padding:1.1rem;text-align:center;transition:all .3s;
+}
+.h-mini:hover{background:rgba(217,185,63,.08);border-color:rgba(217,185,63,.25);transform:translateY(-2px)}
+.h-mini-ico{font-size:1.7rem;margin-bottom:.4rem}
+.h-mini-lbl{color:rgba(255,255,255,.6);font-size:.78rem}
+
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* ══ TICKER ══ */
+.ticker{background:var(--or);padding:.7rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;gap:2.5rem;animation:scroll 22s linear infinite}
+.t-item{
+  font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.1em;
+  color:var(--bleu);display:flex;align-items:center;gap:.7rem;
+}
+.t-dot{width:5px;height:5px;border-radius:50%;background:var(--bleu);opacity:.35}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ SHARED SECTION STYLES ══ */
+.s-wrap{max-width:1100px;margin:0 auto}
+.s-label{font-family:'Belleza',serif;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;display:block;margin-bottom:.65rem}
+.s-label-or{color:var(--taupe)}
+.s-label-inv{color:var(--beige)}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4rem);line-height:.97;letter-spacing:.03em}
+.s-title .em{color:var(--or)}
+.s-divider{width:44px;height:3px;background:var(--or);border-radius:2px;margin:1.4rem 0}
+.s-desc{font-size:1rem;line-height:1.82;color:var(--muted);max-width:540px}
+
+/* ══ BLOC 1 — LE QUOI ══ */
+.b-quoi{padding:7rem 3.5rem;background:var(--blanc)}
+.quoi-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem}
+.quoi-text .s-title{color:var(--bleu)}
+.quoi-visual{display:flex;flex-direction:column;gap:1rem}
+.q-card{
+  display:flex;align-items:flex-start;gap:1.1rem;
+  background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:1.1rem;
+  padding:1.5rem;transition:all .3s;cursor:default;
+}
+.q-card:hover{transform:translateX(5px);box-shadow:0 8px 28px rgba(19,35,110,.07);border-color:rgba(19,35,110,.1)}
+.q-ico{
+  width:44px;height:44px;flex-shrink:0;border-radius:.875rem;
+  background:var(--or-pale);display:flex;align-items:center;justify-content:center;font-size:1.35rem;
+}
+.q-title{font-weight:600;color:var(--bleu);font-size:.92rem;margin-bottom:.3rem}
+.q-desc{color:var(--muted);font-size:.84rem;line-height:1.65}
+.bloc-cta{margin-top:2.25rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.b-cta-note{font-size:.82rem;color:var(--muted)}
+.b-cta-note strong{color:var(--bleu)}
+
+/* ══ BLOC 2 — POUR QUI ══ */
+.b-pourqui{padding:7rem 3.5rem;background:var(--bleu)}
+.pourqui-header{margin-bottom:4rem}
+.pourqui-header .s-title{color:#fff}
+.pourqui-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.pq-card{
+  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:1.5rem;padding:2.25rem;transition:all .3s;
+}
+.pq-card:hover{background:rgba(255,255,255,.09);transform:translateY(-3px);border-color:rgba(217,185,63,.25)}
+.pq-card.featured{
+  background:var(--or);border:none;
+}
+.pq-card.featured:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(217,185,63,.25)}
+.pq-tag{
+  display:inline-block;padding:.28rem .875rem;border-radius:2rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:1.1rem;
+}
+.featured .pq-tag{background:rgba(19,35,110,.12);color:var(--bleu)}
+.default .pq-tag{background:rgba(217,185,63,.12);color:var(--or)}
+.pq-ico{font-size:2.5rem;margin-bottom:.875rem;display:block}
+.pq-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.05em;margin-bottom:.6rem}
+.featured .pq-name{color:var(--bleu)}
+.default .pq-name{color:#fff}
+.pq-desc{font-size:.86rem;line-height:1.7;margin-bottom:1.5rem}
+.featured .pq-desc{color:rgba(19,35,110,.7)}
+.default .pq-desc{color:rgba(255,255,255,.5)}
+.pq-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.pq-li{display:flex;align-items:flex-start;gap:.6rem;font-size:.84rem}
+.featured .pq-li{color:var(--bleu)}
+.default .pq-li{color:rgba(255,255,255,.65)}
+.pq-check{
+  width:17px;height:17px;flex-shrink:0;border-radius:50%;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;
+}
+.featured .pq-check{background:var(--bleu);color:var(--or)}
+.default .pq-check{background:rgba(217,185,63,.18);color:var(--or)}
+
+.b-pourqui-cta{margin-top:3.5rem;display:flex;justify-content:center}
+
+/* ══ BLOC 3 — POURQUOI ══ */
+.b-pourquoi{padding:7rem 3.5rem;background:var(--gris)}
+.pourquoi-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-bottom:4.5rem}
+.pourquoi-text .s-title{color:var(--bleu)}
+.kpi-box{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.kpi{
+  background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:1.1rem;
+  padding:1.6rem;text-align:center;transition:all .3s;
+}
+.kpi:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(19,35,110,.07)}
+.kpi-n{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--bleu);letter-spacing:.04em;line-height:1}
+.kpi-l{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem}
+
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+.w-card{
+  background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:1.1rem;
+  padding:1.875rem;transition:all .3s;position:relative;overflow:hidden;
+}
+.w-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .35s;
+}
+.w-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(19,35,110,.08)}
+.w-card:hover::after{transform:scaleX(1)}
+.w-ico{
+  width:46px;height:46px;border-radius:1rem;background:var(--bleu-pale);
+  display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:1rem;
+}
+.w-title{font-weight:600;color:var(--bleu);font-size:.92rem;margin-bottom:.4rem}
+.w-desc{color:var(--muted);font-size:.84rem;line-height:1.65}
+
+.b-pourquoi-cta{margin-top:3.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.cta-note{font-size:.82rem;color:var(--muted)}
+.cta-note strong{color:var(--bleu)}
+
+/* ══ FAQ ══ */
+.b-faq{padding:7rem 3.5rem;background:var(--bleu-dark)}
+.faq-inner{max-width:760px;margin:0 auto}
+.faq-header{text-align:center;margin-bottom:3.5rem}
+.faq-header .s-title{color:#fff;font-size:clamp(2.4rem,4.5vw,3.8rem)}
+.faq-header .s-desc{color:rgba(255,255,255,.4);margin:0 auto}
+
+.faq-list{display:flex;flex-direction:column;gap:.7rem}
+.fi{
+  border:1px solid rgba(255,255,255,.08);border-radius:1rem;
+  overflow:hidden;background:rgba(255,255,255,.03);transition:border-color .2s,background .2s;
+}
+.fi.open{border-color:rgba(217,185,63,.3);background:rgba(217,185,63,.045)}
+.fi-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.35rem 1.75rem;cursor:pointer;gap:1rem;user-select:none;
+}
+.fi-q-t{font-size:.95rem;font-weight:500;color:rgba(255,255,255,.8);transition:color .2s}
+.fi.open .fi-q-t{color:var(--or)}
+.fi-tog{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;
+  transition:all .35s;
+}
+.fi.open .fi-tog{background:rgba(217,185,63,.15);color:var(--or);transform:rotate(45deg)}
+.fi-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.fi.open .fi-a{max-height:320px}
+.fi-a-inner{
+  padding:0 1.75rem 1.6rem;
+  color:rgba(255,255,255,.48);font-size:.88rem;line-height:1.78;
+}
+.fi-mini-cta{
+  display:inline-flex;align-items:center;gap:.45rem;margin-top:.875rem;
+  color:var(--or);font-size:.82rem;font-weight:500;cursor:pointer;transition:gap .2s;
+  text-decoration:none;
+}
+.fi-mini-cta:hover{gap:.75rem}
+
+.faq-bottom{text-align:center;margin-top:3rem}
+.faq-bottom p{color:rgba(255,255,255,.35);font-size:.88rem;margin-bottom:1.25rem}
+
+/* ══ CTA FINAL ══ */
+.b-cta{
+  padding:7rem 3.5rem;
+  background:var(--or);
+  position:relative;overflow:hidden;
+}
+.b-cta::before{
+  content:'';position:absolute;top:-120px;right:-120px;
+  width:440px;height:440px;border-radius:50%;
+  background:rgba(255,255,255,.1);pointer-events:none;
+}
+.b-cta::after{
+  content:'';position:absolute;bottom:-80px;left:-80px;
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(255,255,255,.06);pointer-events:none;
+}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.cta-icon{font-size:3.25rem;margin-bottom:1.1rem}
+.cta-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,5.5rem);
+  color:var(--bleu);line-height:.93;letter-spacing:.04em;
+  margin-bottom:1rem;
+}
+.cta-desc{color:rgba(19,35,110,.65);font-size:1rem;line-height:1.8;margin-bottom:2.5rem}
+
+/* Formulaire */
+.form-box{
+  background:rgba(255,255,255,.3);
+  border:1.5px solid rgba(255,255,255,.55);
+  border-radius:1.25rem;padding:2.25rem;
+  display:flex;flex-direction:column;gap:.95rem;
+  text-align:left;
+  backdrop-filter:blur(8px);
+}
+.f-row2{display:grid;grid-template-columns:1fr 1fr;gap:.875rem}
+.ff{display:flex;flex-direction:column;gap:.38rem}
+.ff label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(19,35,110,.55)}
+.ff input,.ff select{
+  padding:.82rem 1rem;border:1.5px solid rgba(19,35,110,.15);border-radius:.625rem;
+  background:rgba(255,255,255,.65);color:var(--bleu);
+  font-family:'DM Sans',sans-serif;font-size:.93rem;outline:none;transition:all .2s;
+}
+.ff input::placeholder{color:rgba(19,35,110,.3)}
+.ff input:focus,.ff select:focus{
+  border-color:var(--bleu);background:rgba(255,255,255,.9);
+  box-shadow:0 0 0 3px rgba(19,35,110,.08);
+}
+.ff select option{background:#fff;color:var(--bleu)}
+
+/* Étapes du formulaire */
+.form-steps{display:none}
+.form-step{display:none}
+.form-step.active{display:flex;flex-direction:column;gap:.95rem}
+
+.prog-wrap{margin-bottom:.5rem}
+.prog-bar{height:3px;background:rgba(19,35,110,.12);border-radius:2px}
+.prog-fill{height:100%;background:var(--bleu);border-radius:2px;transition:width .4s ease}
+.prog-labels{display:flex;justify-content:space-between;margin-top:.45rem}
+.prog-lbl{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(19,35,110,.35);transition:color .3s}
+.prog-lbl.act{color:var(--bleu);font-weight:600}
+.prog-lbl.done{color:rgba(19,35,110,.5)}
+
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem}
+.opt-btn{
+  border:1.5px solid rgba(19,35,110,.14);border-radius:.875rem;
+  padding:1.1rem .875rem;text-align:center;cursor:pointer;
+  transition:all .2s;background:rgba(255,255,255,.5);
+}
+.opt-btn:hover{border-color:var(--bleu);background:rgba(255,255,255,.85)}
+.opt-btn.sel{border-color:var(--bleu);background:var(--bleu);color:#fff}
+.opt-btn .o-ico{font-size:1.7rem;display:block;margin-bottom:.4rem}
+.opt-btn .o-lbl{font-size:.8rem;font-weight:500;color:inherit}
+.opt-btn.sel .o-lbl{color:#fff}
+.opt-btn .o-sub{font-size:.68rem;color:rgba(19,35,110,.4);margin-top:.15rem}
+.opt-btn.sel .o-sub{color:rgba(255,255,255,.55)}
+
+.chips-wrap{display:flex;flex-wrap:wrap;gap:.6rem}
+.chip{
+  border:1.5px solid rgba(19,35,110,.14);border-radius:2rem;
+  padding:.45rem 1rem;font-size:.83rem;cursor:pointer;
+  color:rgba(19,35,110,.65);background:rgba(255,255,255,.5);
+  transition:all .2s;
+}
+.chip:hover{border-color:var(--bleu);color:var(--bleu);background:rgba(255,255,255,.85)}
+.chip.sel{border-color:var(--bleu);background:var(--bleu);color:#fff}
+
+.dispo-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.dispo{
+  display:flex;align-items:center;gap:.7rem;
+  border:1.5px solid rgba(19,35,110,.12);border-radius:.75rem;
+  padding:.7rem .9rem;cursor:pointer;transition:all .2s;
+  background:rgba(255,255,255,.5);
+}
+.dispo:hover{border-color:var(--bleu);background:rgba(255,255,255,.85)}
+.dispo.sel{border-color:var(--bleu);background:var(--bleu)}
+.dispo-cb{
+  width:17px;height:17px;border-radius:3px;flex-shrink:0;
+  border:1.5px solid rgba(19,35,110,.2);
+  display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;
+  transition:all .2s;color:transparent;
+}
+.dispo.sel .dispo-cb{background:var(--or);border-color:var(--or);color:var(--bleu)}
+.dispo-lbl{font-size:.82rem;color:rgba(19,35,110,.7);transition:color .2s}
+.dispo.sel .dispo-lbl{color:rgba(255,255,255,.9)}
+
+.step-title{font-weight:600;color:var(--bleu);font-size:.95rem;margin-bottom:.1rem}
+.step-sub{font-size:.78rem;color:rgba(19,35,110,.5)}
+
+.nav-row{display:flex;align-items:center;justify-content:space-between;margin-top:.25rem}
+.btn-back{
+  background:transparent;border:1.5px solid rgba(19,35,110,.2);
+  color:rgba(19,35,110,.6);border-radius:.625rem;padding:.7rem 1.35rem;
+  font-family:'DM Sans',sans-serif;font-size:.86rem;cursor:pointer;transition:all .2s;
+}
+.btn-back:hover{border-color:var(--bleu);color:var(--bleu)}
+.btn-next{
+  background:var(--bleu);color:var(--or);border:none;border-radius:.625rem;
+  padding:.78rem 1.75rem;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.88rem;
+  cursor:pointer;transition:all .2s;
+}
+.btn-next:hover{background:var(--bleu-mid);transform:translateY(-1px)}
+.btn-submit{
+  width:100%;background:var(--bleu);color:var(--or);border:none;border-radius:.75rem;
+  padding:1.1rem;font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;
+  cursor:pointer;transition:all .25s;letter-spacing:.02em;
+}
+.btn-submit:hover{background:var(--bleu-mid);transform:translateY(-1px);box-shadow:0 8px 24px rgba(19,35,110,.22)}
+.f-legal{font-size:.7rem;color:rgba(19,35,110,.4);text-align:center}
+
+.form-success{display:none;text-align:center;padding:1.25rem 0}
+.s-ico{font-size:4rem;margin-bottom:1rem;animation:pop .5s ease}
+.s-ttl{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--bleu);letter-spacing:.04em;margin-bottom:.6rem}
+.s-sub{color:rgba(19,35,110,.6);font-size:.92rem;line-height:1.75}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ══ FOOTER ══ */
+footer{
+  background:var(--bleu-dark);
+  border-top:1px solid rgba(217,185,63,.1);
+  padding:2.75rem 3.5rem;
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+}
+.f-logo-t{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--or);letter-spacing:.08em;line-height:1}
+.f-logo-s{font-family:'Belleza',serif;font-size:.58rem;color:rgba(255,255,255,.28);letter-spacing:.22em;text-transform:uppercase}
+.f-nav{display:flex;gap:1.75rem;flex-wrap:wrap}
+.f-nav a{color:rgba(255,255,255,.3);text-decoration:none;font-size:.8rem;transition:color .2s}
+.f-nav a:hover{color:var(--or)}
+.f-copy{color:rgba(255,255,255,.18);font-size:.76rem}
+
+/* ══ REVEAL ══ */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+.rv.on{opacity:1;transform:none}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:960px){
+  nav{padding:1rem 1.5rem}
+  .n-links{display:none}
+  .hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem}
+  .hero-right{display:none}
+  .b-quoi,.b-pourqui,.b-pourquoi,.b-faq,.b-cta{padding:5rem 1.5rem}
+  .quoi-layout,.pourquoi-intro{grid-template-columns:1fr;gap:2.5rem}
+  .f-row2,.dispo-grid{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}
+  .footer-inner{flex-direction:column;text-align:center}
+  .f-nav{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="n-logo">
+    <span class="n-logo-main">Il est Midi</span>
+    <span class="n-logo-sub">by Mon Petit Faré</span>
+  </div>
+  <ul class="n-links">
+    <li><a href="#quoi">Le projet</a></li>
+    <li><a href="#pourqui">Pour qui</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="n-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Rejoindre le réseau</button>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="top">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-orb"></div>
+
+  <div class="hero-left">
+    <div class="h-eyebrow"><span class="h-eyebrow-line"></span>Pour les foodtrucks indépendants</div>
+    <h1 class="h-title">
+      <span class="t-out">Remplissez</span>
+      <span class="t-or">votre agenda.</span>
+      Sans effort.
+    </h1>
+    <p class="h-sub">Le déjeuner, réinventé</p>
+    <p class="h-desc">
+      Il est Midi connecte les foodtrucks ambitieux à des <strong>entreprises qui recherchent exactement ce que vous proposez</strong> — des clients réguliers, des créneaux récurrents, zéro démarchage.
+    </p>
+    <div class="h-ctas">
+      <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+        Je rejoins le réseau
+        <span class="btn-primary-icon">→</span>
+      </button>
+      <div class="h-trust">
+        <div class="h-avatars">
+          <div class="h-av">🌮</div>
+          <div class="h-av">🍜</div>
+          <div class="h-av">🥗</div>
+          <div class="h-av">🍔</div>
+        </div>
+        +350 foodtrucks nous font déjà confiance
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="h-card-main">
+      <div class="hc-icon">🚚</div>
+      <div class="hc-name">Le Comptoir Nomade</div>
+      <div class="hc-type">Cuisine française revisitée · Lyon 7e</div>
+      <div class="hc-stats">
+        <div><div class="hc-stat-v">12</div><div class="hc-stat-l">Clients actifs</div></div>
+        <div><div class="hc-stat-v">4×/sem</div><div class="hc-stat-l">Créneaux</div></div>
+        <div><div class="hc-stat-v">98%</div><div class="hc-stat-l">Satisfaction</div></div>
+      </div>
+    </div>
+    <div class="h-mini-grid">
+      <div class="h-mini"><div class="h-mini-ico">📅</div><div class="h-mini-lbl">Agenda rempli</div></div>
+      <div class="h-mini"><div class="h-mini-ico">💰</div><div class="h-mini-lbl">Revenus stables</div></div>
+      <div class="h-mini"><div class="h-mini-ico">📍</div><div class="h-mini-lbl">Clients proches</div></div>
+      <div class="h-mini"><div class="h-mini-ico">🤝</div><div class="h-mini-lbl">Zéro démarchage</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="t-item"><span class="t-dot"></span>Clients récurrents garantis</span>
+    <span class="t-item"><span class="t-dot"></span>Matching intelligent</span>
+    <span class="t-item"><span class="t-dot"></span>Planning optimisé</span>
+    <span class="t-item"><span class="t-dot"></span>Zéro démarchage</span>
+    <span class="t-item"><span class="t-dot"></span>Inscription gratuite</span>
+    <span class="t-item"><span class="t-dot"></span>Recontact sous 24h</span>
+    <span class="t-item"><span class="t-dot"></span>Clients récurrents garantis</span>
+    <span class="t-item"><span class="t-dot"></span>Matching intelligent</span>
+    <span class="t-item"><span class="t-dot"></span>Planning optimisé</span>
+    <span class="t-item"><span class="t-dot"></span>Zéro démarchage</span>
+    <span class="t-item"><span class="t-dot"></span>Inscription gratuite</span>
+    <span class="t-item"><span class="t-dot"></span>Recontact sous 24h</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     BLOC 1 — LE QUOI
+══════════════════════════════ -->
+<section class="b-quoi" id="quoi">
+  <div class="s-wrap">
+    <div class="quoi-layout">
+
+      <div class="rv">
+        <span class="s-label s-label-or">01 — Le projet</span>
+        <h2 class="s-title" style="color:var(--bleu)">C'est quoi<br><span class="em">Il est Midi ?</span></h2>
+        <div class="s-divider"></div>
+        <p class="s-desc">
+          Il est Midi est une <strong style="color:var(--bleu)">plateforme de matching intelligente</strong> qui connecte les foodtrucks indépendants aux entreprises à la recherche d'une solution de restauration flexible et engageante pour leurs collaborateurs.
+          <br><br>
+          Pour vous, foodtruck, c'est simple : vous créez votre profil, notre algorithme vous met en relation avec les bonnes entreprises dans votre zone, et vous gérez vos créneaux depuis un espace dédié. <strong style="color:var(--bleu)">Vous cuisinez, on s'occupe du reste.</strong>
+        </p>
+        <div class="bloc-cta">
+          <button class="btn-primary" style="max-width:280px" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+            Je veux en savoir plus
+            <span class="btn-primary-icon">→</span>
+          </button>
+          <span class="b-cta-note">Gratuit · Sans engagement</span>
+        </div>
+      </div>
+
+      <div class="rv d2" style="display:flex;flex-direction:column;gap:1rem">
+        <div class="q-card">
+          <div class="q-ico">🎯</div>
+          <div>
+            <div class="q-title">Matching intelligent</div>
+            <div class="q-desc">Notre algorithme croise votre cuisine, zone, capacité et disponibilités avec les besoins des entreprises. Que des demandes pertinentes, jamais du bruit.</div>
+          </div>
+        </div>
+        <div class="q-card">
+          <div class="q-ico">🔄</div>
+          <div>
+            <div class="q-title">Rotations & planning gérés</div>
+            <div class="q-desc">Les entreprises organisent des passages réguliers. Vous avez une visibilité sur vos créneaux à venir et pouvez planifier sereinement.</div>
+          </div>
+        </div>
+        <div class="q-card">
+          <div class="q-ico">⭐</div>
+          <div>
+            <div class="q-title">Votes & précommandes</div>
+            <div class="q-desc">Les collaborateurs votent pour leurs foodtrucks et précommandent à l'avance. Moins de gaspillage, plus d'engagement — et vous savez exactement quoi préparer.</div>
+          </div>
+        </div>
+        <div class="q-card">
+          <div class="q-ico">📊</div>
+          <div>
+            <div class="q-title">Profil & réputation</div>
+            <div class="q-desc">Chaque prestation est notée. Votre score monte, votre profil gagne en visibilité, vous attirez encore plus de clients qualifiés.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     BLOC 2 — POUR QUI
+══════════════════════════════ -->
+<section class="b-pourqui" id="pourqui">
+  <div class="s-wrap">
+    <div class="pourqui-header rv">
+      <span class="s-label s-label-inv">02 — Pour qui</span>
+      <h2 class="s-title" style="color:#fff">Fait pour <span class="em">votre profil</span></h2>
+      <div class="s-divider"></div>
+      <p class="s-desc" style="color:rgba(255,255,255,.48)">Il est Midi s'adresse à tous les foodtrucks indépendants qui veulent développer une clientèle professionnelle stable, quel que soit leur concept.</p>
+    </div>
+
+    <div class="pourqui-grid">
+      <div class="pq-card featured rv d1">
+        <span class="pq-tag">⭐ Profil idéal</span>
+        <span class="pq-ico">🚚</span>
+        <div class="pq-name">Foodtruck indépendant</div>
+        <p class="pq-desc">Vous avez un bon concept, de la qualité, mais vous peinez à sécuriser des emplacements réguliers rentables. Il est Midi est exactement ce qu'il vous faut.</p>
+        <ul class="pq-list">
+          <li class="pq-li"><span class="pq-check">✓</span>Tout concept culinaire accepté</li>
+          <li class="pq-li"><span class="pq-check">✓</span>Débutants et confirmés bienvenus</li>
+          <li class="pq-li"><span class="pq-check">✓</span>Capacité dès 10 couverts/service</li>
+          <li class="pq-li"><span class="pq-check">✓</span>Toutes zones géographiques</li>
+        </ul>
+      </div>
+
+      <div class="pq-card default rv d2">
+        <span class="pq-tag">Aussi pour vous</span>
+        <span class="pq-ico">🍽️</span>
+        <div class="pq-name">Traiteur mobile</div>
+        <p class="pq-desc">Vous proposez des prestations événementielles ou des déjeuners livrés ? Notre plateforme vous connecte aux entreprises qui cherchent exactement ce type d'offre.</p>
+        <ul class="pq-list">
+          <li class="pq-li"><span class="pq-check">✓</span>Prestations événementielles</li>
+          <li class="pq-li"><span class="pq-check">✓</span>Service traiteur & livraison</li>
+          <li class="pq-li"><span class="pq-check">✓</span>Offre sur mesure possible</li>
+        </ul>
+      </div>
+
+      <div class="pq-card default rv d3">
+        <span class="pq-tag">Aussi pour vous</span>
+        <span class="pq-ico">🏭</span>
+        <div class="pq-name">PME en zone industrielle</div>
+        <p class="pq-desc">Vous ciblez les zones peu desservies par la restauration traditionnelle ? C'est exactement là où nous avons le plus de demandes d'entreprises non satisfaites.</p>
+        <ul class="pq-list">
+          <li class="pq-li"><span class="pq-check">✓</span>Zones industrielles & périphérie</li>
+          <li class="pq-li"><span class="pq-check">✓</span>Fort potentiel, peu de concurrence</li>
+          <li class="pq-li"><span class="pq-check">✓</span>Clients très fidèles</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="b-pourqui-cta rv">
+      <button class="btn-primary" style="display:inline-flex;gap:.75rem" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+        Je rejoins le réseau
+        <span>→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     BLOC 3 — POURQUOI
+══════════════════════════════ -->
+<section class="b-pourquoi" id="pourquoi">
+  <div class="s-wrap">
+    <div class="pourquoi-intro">
+      <div class="rv">
+        <span class="s-label s-label-or">03 — Pourquoi nous</span>
+        <h2 class="s-title" style="color:var(--bleu)">Pas juste<br>une mise en<br><span class="em">relation.</span></h2>
+        <div class="s-divider"></div>
+        <p class="s-desc">
+          Il existe des annuaires, des groupes Facebook, des appels à froid. Il est Midi fait autre chose : nous créons de la <strong style="color:var(--bleu)">récurrence sécurisée</strong> et gérons la coordination pour que vous puissiez vous concentrer sur ce qui compte — votre cuisine.
+        </p>
+        <div class="b-pourquoi-cta">
+          <button class="btn-primary" style="max-width:280px" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+            Rejoindre maintenant
+            <span class="btn-primary-icon">→</span>
+          </button>
+          <span class="cta-note">Recontact sous <strong>24h</strong></span>
+        </div>
+      </div>
+      <div class="kpi-box rv d2">
+        <div class="kpi"><div class="kpi-n">350+</div><div class="kpi-l">Foodtrucks partenaires</div></div>
+        <div class="kpi"><div class="kpi-n">180</div><div class="kpi-l">Entreprises clientes</div></div>
+        <div class="kpi"><div class="kpi-n">4,2×</div><div class="kpi-l">Réservations / mois</div></div>
+        <div class="kpi"><div class="kpi-n">24h</div><div class="kpi-l">Délai de mise en relation</div></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="w-card rv">
+        <div class="w-ico">📅</div>
+        <div class="w-title">Des créneaux réguliers</div>
+        <div class="w-desc">Les entreprises cherchent des prestataires récurrents. Vous remplissez vos semaines avec des contrats stables, pas des one-shots.</div>
+      </div>
+      <div class="w-card rv d1">
+        <div class="w-ico">🎯</div>
+        <div class="w-title">Demandes toujours compatibles</div>
+        <div class="w-desc">Notre algorithme filtre par cuisine, zone, capacité et budget. Vous ne recevez que des demandes qui vous correspondent vraiment.</div>
+      </div>
+      <div class="w-card rv d2">
+        <div class="w-ico">🤝</div>
+        <div class="w-title">Zéro commission cachée</div>
+        <div class="w-desc">Inscription gratuite, sans engagement. Un abonnement simple si vous souhaitez accéder aux fonctionnalités premium de boost et statistiques.</div>
+      </div>
+      <div class="w-card rv d3">
+        <div class="w-ico">📈</div>
+        <div class="w-title">Réputation qui travaille pour vous</div>
+        <div class="w-desc">Chaque prestation est notée. Votre score monte, votre profil remonte dans les résultats — sans effort marketing de votre côté.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FAQ
+══════════════════════════════ -->
+<section class="b-faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header rv">
+      <span class="s-label s-label-inv" style="display:block;margin-bottom:.6rem">Questions fréquentes</span>
+      <h2 class="s-title" style="color:#fff;font-size:clamp(2.4rem,4.5vw,3.6rem)">Vous avez des questions.<br><span class="em">On a les réponses.</span></h2>
+      <p class="s-desc" style="color:rgba(255,255,255,.38);margin:.875rem auto 0">Tout ce que vous devez savoir avant de rejoindre le réseau Il est Midi.</p>
+    </div>
+
+    <div class="faq-list rv">
+      <div class="fi">
+        <div class="fi-q" onclick="openFaq(this)">
+          <span class="fi-q-t">C'est vraiment gratuit de s'inscrire ?</span>
+          <span class="fi-tog">+</span>
+        </div>
+        <div class="fi-a"><div class="fi-a-inner">
+          Oui, l'inscription est entièrement gratuite et sans engagement. Vous créez votre profil, notre équipe le valide sous 24h, et vous commencez à recevoir des demandes. Des options premium (boost de visibilité, statistiques avancées) seront disponibles via abonnement, mais le cœur du service reste gratuit.
+          <a class="fi-mini-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">M'inscrire gratuitement →</a>
+        </div></div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-q" onclick="openFaq(this)">
+          <span class="fi-q-t">Comment fonctionne le matching concrètement ?</span>
+          <span class="fi-tog">+</span>
+        </div>
+        <div class="fi-a"><div class="fi-a-inner">
+          Quand une entreprise renseigne ses critères (taille d'équipe, préférences culinaires, budget, fréquence), notre algorithme analyse les profils des foodtrucks disponibles dans sa zone. Il calcule un score de compatibilité basé sur votre cuisine, capacité, disponibilités et réputation. Seuls les matchs pertinents sont proposés — des deux côtés.
+          <a class="fi-mini-cta" onclick="document.getElementById('quoi').scrollIntoView({behavior:'smooth'})">Voir comment ça marche →</a>
+        </div></div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-q" onclick="openFaq(this)">
+          <span class="fi-q-t">Est-ce que je peux refuser des demandes ?</span>
+          <span class="fi-tog">+</span>
+        </div>
+        <div class="fi-a"><div class="fi-a-inner">
+          Absolument. Vous restez entièrement libre d'accepter ou de refuser chaque demande, en un clic depuis votre espace. Vous n'êtes jamais engagé sans votre accord explicite, et vous gérez votre planning selon vos disponibilités réelles.
+        </div></div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-q" onclick="openFaq(this)">
+          <span class="fi-q-t">Dans quelles villes êtes-vous disponibles ?</span>
+          <span class="fi-tog">+</span>
+        </div>
+        <div class="fi-a"><div class="fi-a-inner">
+          Nous sommes en phase de lancement et construisons activement notre réseau. En rejoignant maintenant, vous êtes parmi les premiers de votre zone et bénéficiez d'une intégration prioritaire dès l'ouverture des demandes entreprises dans votre secteur.
+          <a class="fi-mini-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Rejoindre la liste →</a>
+        </div></div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-q" onclick="openFaq(this)">
+          <span class="fi-q-t">Quelle est la capacité minimale requise ?</span>
+          <span class="fi-tog">+</span>
+        </div>
+        <div class="fi-a"><div class="fi-a-inner">
+          Il n'y a pas de minimum strict. Que vous serviez 15 ou 150 couverts par service, notre algorithme vous met en relation avec des entreprises dont la taille correspond à votre capacité. Les petites équipes ont autant de chances de trouver des clients que les grandes structures.
+        </div></div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-q" onclick="openFaq(this)">
+          <span class="fi-q-t">Que se passe-t-il après mon inscription ?</span>
+          <span class="fi-tog">+</span>
+        </div>
+        <div class="fi-a"><div class="fi-a-inner">
+          Dès que vous soumettez votre fiche, un membre de notre équipe vous contacte sous 24h ouvrées pour valider votre profil, répondre à vos questions et vous présenter les premières opportunités disponibles dans votre zone. C'est simple, humain, sans engagement.
+          <a class="fi-mini-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Soumettre ma fiche →</a>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="faq-bottom rv">
+      <p>Votre question n'est pas là ?</p>
+      <button class="btn-primary" style="display:inline-flex;gap:.75rem;padding:.875rem 1.75rem" onclick="window.location.href='mailto:contact@ilestmidi.fr'">
+        Nous écrire directement <span>→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CTA FINAL — FORMULAIRE
+══════════════════════════════ -->
+<section class="b-cta" id="cta">
+  <div class="cta-inner rv">
+    <div class="cta-icon">🚚</div>
+    <h2 class="cta-title">Prêt à remplir<br>votre agenda ?</h2>
+    <p class="cta-desc">Laissez-nous vos informations en 4 étapes rapides. Notre équipe vous recontacte sous 24h avec les premières opportunités disponibles dans votre zone.</p>
+
+    <!-- Formulaire multi-étapes -->
+    <div class="form-box" id="formBox">
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="pf" style="width:25%"></div></div>
+        <div class="prog-labels">
+          <span class="prog-lbl act" id="pl1">Votre cuisine</span>
+          <span class="prog-lbl" id="pl2">Zone & capacité</span>
+          <span class="prog-lbl" id="pl3">Disponibilités</span>
+          <span class="prog-lbl" id="pl4">Contact</span>
+        </div>
+      </div>
+
+      <!-- Step 1 : Cuisine -->
+      <div class="form-step active" id="s1">
+        <div>
+          <div class="step-title">Quel type de cuisine proposez-vous ?</div>
+          <div class="step-sub">Sélectionnez tout ce qui s'applique à votre concept.</div>
+        </div>
+        <div class="chips-wrap">
+          <span class="chip" onclick="tc(this)">🇫🇷 Français</span>
+          <span class="chip" onclick="tc(this)">🌮 Mexicain</span>
+          <span class="chip" onclick="tc(this)">🍜 Asiatique</span>
+          <span class="chip" onclick="tc(this)">🥗 Healthy / Vegan</span>
+          <span class="chip" onclick="tc(this)">🍔 Burgers</span>
+          <span class="chip" onclick="tc(this)">🍕 Italien</span>
+          <span class="chip" onclick="tc(this)">🧆 Oriental</span>
+          <span class="chip" onclick="tc(this)">🥞 Brunch</span>
+          <span class="chip" onclick="tc(this)">✨ Fusion / Autre</span>
+        </div>
+        <div class="ff">
+          <label>Décrivez votre concept (optionnel)</label>
+          <input type="text" placeholder="Ex : Street food thaïlandaise maison, produits frais...">
+        </div>
+        <div class="nav-row">
+          <span style="font-size:.75rem;color:rgba(19,35,110,.45)">Étape 1 / 4</span>
+          <button class="btn-next" onclick="go(2)">Suivant →</button>
+        </div>
+      </div>
+
+      <!-- Step 2 : Zone & capacité -->
+      <div class="form-step" id="s2">
+        <div>
+          <div class="step-title">Où intervenez-vous et quelle est votre capacité ?</div>
+          <div class="step-sub">Votre zone d'intervention et le nombre de couverts par service.</div>
+        </div>
+        <div class="f-row2">
+          <div class="ff">
+            <label>Ville principale</label>
+            <input type="text" placeholder="Lyon, Paris, Bordeaux...">
+          </div>
+          <div class="ff">
+            <label>Rayon d'intervention</label>
+            <select>
+              <option value="">Sélectionner</option>
+              <option>Moins de 10 km</option>
+              <option>10 — 25 km</option>
+              <option>25 — 50 km</option>
+              <option>Plus de 50 km</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="step-sub" style="margin-bottom:.7rem">Capacité par service</div>
+          <div class="opt-grid">
+            <div class="opt-btn" onclick="so(this,'cap')"><span class="o-ico">🍽️</span><span class="o-lbl">— de 30</span><span class="o-sub">couverts</span></div>
+            <div class="opt-btn" onclick="so(this,'cap')"><span class="o-ico">🍽️🍽️</span><span class="o-lbl">30 — 60</span><span class="o-sub">couverts</span></div>
+            <div class="opt-btn" onclick="so(this,'cap')"><span class="o-ico">🍽️🍽️🍽️</span><span class="o-lbl">60 — 100</span><span class="o-sub">couverts</span></div>
+            <div class="opt-btn" onclick="so(this,'cap')"><span class="o-ico">🏢</span><span class="o-lbl">100 +</span><span class="o-sub">couverts</span></div>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="go(1)">← Retour</button>
+          <span style="font-size:.75rem;color:rgba(19,35,110,.45)">Étape 2 / 4</span>
+          <button class="btn-next" onclick="go(3)">Suivant →</button>
+        </div>
+      </div>
+
+      <!-- Step 3 : Disponibilités -->
+      <div class="form-step" id="s3">
+        <div>
+          <div class="step-title">Quand êtes-vous disponible ?</div>
+          <div class="step-sub">Cochez les créneaux sur lesquels vous pouvez intervenir régulièrement.</div>
+        </div>
+        <div class="dispo-grid">
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">🌅 Lundi midi</span></div>
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">🌅 Mardi midi</span></div>
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">🌅 Mercredi midi</span></div>
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">🌅 Jeudi midi</span></div>
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">🌅 Vendredi midi</span></div>
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">🌆 Soirs (événements)</span></div>
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">📅 Week-ends</span></div>
+          <div class="dispo" onclick="td(this)"><span class="dispo-cb"></span><span class="dispo-lbl">⭐ Événements ponctuels</span></div>
+        </div>
+        <div class="ff">
+          <label>Précisions (optionnel)</label>
+          <input type="text" placeholder="Ex : Fermé en août, uniquement le matin...">
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="go(2)">← Retour</button>
+          <span style="font-size:.75rem;color:rgba(19,35,110,.45)">Étape 3 / 4</span>
+          <button class="btn-next" onclick="go(4)">Suivant →</button>
+        </div>
+      </div>
+
+      <!-- Step 4 : Contact -->
+      <div class="form-step" id="s4">
+        <div>
+          <div class="step-title">On vous recontacte sous 24h !</div>
+          <div class="step-sub">Dernière étape. Renseignez vos coordonnées pour que notre équipe puisse vous appeler.</div>
+        </div>
+        <div class="f-row2">
+          <div class="ff"><label>Prénom</label><input type="text" placeholder="Jean"></div>
+          <div class="ff"><label>Nom</label><input type="text" placeholder="Dupont"></div>
+        </div>
+        <div class="f-row2">
+          <div class="ff"><label>Nom du foodtruck</label><input type="text" placeholder="Le Comptoir Nomade"></div>
+          <div class="ff"><label>Téléphone</label><input type="tel" placeholder="06 12 34 56 78"></div>
+        </div>
+        <div class="ff"><label>Email</label><input type="email" placeholder="contact@montruck.fr"></div>
+        <button class="btn-submit" onclick="submit()">Envoyer ma candidature 🚀</button>
+        <p class="f-legal">En soumettant ce formulaire, vous acceptez d'être recontacté par l'équipe Il est Midi. Aucun spam.</p>
+        <div class="nav-row" style="justify-content:flex-start">
+          <button class="btn-back" onclick="go(3)">← Retour</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Succès -->
+    <div class="form-success" id="formSuccess">
+      <div class="s-ico">🎉</div>
+      <div class="s-ttl">Bienvenue dans le réseau !</div>
+      <p class="s-sub">Votre fiche est entre les mains de notre équipe.<br>Un appel sous <strong>24h ouvrées</strong> pour valider votre intégration et vous présenter les premières opportunités dans votre zone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="f-logo-t">Il est Midi</div>
+      <div class="f-logo-s">by Mon Petit Faré</div>
+    </div>
+    <nav class="f-nav">
+      <a href="#quoi">Le projet</a>
+      <a href="#pourqui">Pour qui</a>
+      <a href="#pourquoi">Pourquoi nous</a>
+      <a href="#faq">FAQ</a>
+      <a href="#">Contact</a>
+      <a href="#">Mentions légales</a>
+    </nav>
+    <span class="f-copy">© 2025 Mon Petit Faré</span>
+  </div>
+</footer>
+
+<script>
+/* ── Form ── */
+let cur = 1;
+const pct = ['25%','50%','75%','100%'];
+
+function go(n) {
+  document.getElementById('s'+cur).classList.remove('active');
+  cur = n;
+  document.getElementById('s'+cur).classList.add('active');
+  document.getElementById('pf').style.width = pct[cur-1];
+  for(let i=1;i<=4;i++){
+    const el=document.getElementById('pl'+i);
+    el.className='prog-lbl';
+    if(i<cur) el.classList.add('done');
+    else if(i===cur) el.classList.add('act');
+  }
+  document.getElementById('cta').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function so(el,group){
+  el.closest('.opt-grid').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function tc(el){el.classList.toggle('sel')}
+function td(el){
+  el.classList.toggle('sel');
+  el.querySelector('.dispo-cb').textContent = el.classList.contains('sel') ? '✓' : '';
+}
+
+function submit(){
+  document.getElementById('formBox').style.display='none';
+  const s=document.getElementById('formSuccess');
+  s.style.display='block';
+}
+
+/* ── FAQ ── */
+function openFaq(btn){
+  const item=btn.closest('.fi');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.fi.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+/* ── Reveal ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('on')});
+},{threshold:0.07});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

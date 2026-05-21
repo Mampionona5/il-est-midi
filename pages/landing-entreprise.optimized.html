@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Il Est Midi | Réinventez la pause déjeuner en entreprise</title>
+<meta name="description" content="Offrez à vos collaborateurs une solution déjeuner innovante grâce à des foodtrucks sélectionnés pour votre entreprise."/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#0F3D2E;
+  --sage:#A6C4A2;
+  --yellow:#FFC945;
+  --orange:#FF8C42;
+  --cream:#FFF6E9;
+  --cream-dark:#F5EDDA;
+  --white:#FFFFFF;
+  --text:#0F3D2E;
+  --text-muted:#4A6B5A;
+  --radius:24px;
+  --radius-sm:14px;
+  --shadow:0 4px 32px rgba(15,61,46,0.10);
+  --shadow-lg:0 12px 48px rgba(15,61,46,0.14);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Satoshi',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;font-size:16px}
+
+/* TYPOGRAPHY */
+h1,h2,h3{font-family:'DM Serif Display',serif;line-height:1.1}
+h1{font-size:clamp(2.6rem,5vw,4rem);color:var(--green)}
+h2{font-size:clamp(1.9rem,3.5vw,2.8rem);color:var(--green)}
+h3{font-size:1.15rem;font-weight:400}
+p{line-height:1.7;color:var(--text-muted)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 2.5rem;
+  background:var(--white);
+  backdrop-filter:blur(16px);
+  box-shadow:0 10px 30px rgba(15,61,46,0.06);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:var(--shadow)}
+.nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+.nav-logo-mark{
+  height:80px;display:flex;align-items:center;justify-content:center;
+}
+.nav-logo-img{height:80px;width:auto;display:block}
+.nav-logo-text{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--green)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--yellow);color:var(--green);
+  padding:.65rem 1.4rem;border-radius:3rem;min-height:44px;
+  font-size:.85rem;font-weight:700;text-decoration:none;
+  transition:background .2s,transform .15s;white-space:nowrap;
+}
+.nav-cta:hover{background:#ffb800;transform:translateY(-1px)}
+
+/* BUTTONS */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--yellow);color:var(--green);
+  padding:.9rem 2rem;border-radius:3rem;min-height:44px;
+  font-family:'Satoshi',sans-serif;font-size:1rem;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(15,61,46,0.25);
+}
+.btn-primary:hover{background:#ffb800;transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,61,46,0.3)}
+.btn-yellow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--yellow);color:var(--green);
+  padding:.9rem 2rem;border-radius:3rem;min-height:44px;
+  font-family:'Satoshi',sans-serif;font-size:1rem;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(15,61,46,0.25);
+}
+.btn-yellow:hover{background:#ffb800;transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,61,46,0.3)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:var(--green);
+  padding:.9rem 2rem;border-radius:3rem;min-height:44px;
+  font-family:'Satoshi',sans-serif;font-size:1rem;font-weight:500;
+  text-decoration:none;border:1.5px solid var(--sage);cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--yellow);
+  outline-offset:3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+.btn-ghost:hover{background:rgba(166,196,162,.15);border-color:var(--green)}
+
+.icon{
+  width:20px;height:20px;
+  stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.icon-line{stroke-width:2.2}
+
+/* SECTION */
+section{padding:6rem 4rem}
+.container{width:100%;margin:0}
+
+/* =================== HERO =================== */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  padding-top:5rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero-left{
+  padding:5rem 3rem 4rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:2;
+}
+.hero h1{margin-bottom:1.3rem}
+.hero h1 span{font-style:italic;color:var(--orange)}
+.hero-sub{
+  font-size:1.05rem;
+  color:var(--text-muted);
+  line-height:1.65;
+  max-width:420px;
+  margin-bottom:2.5rem;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-right{
+  position:relative;overflow:visible;
+  background:var(--cream);
+  height:calc(100vh - 16rem);
+  margin-top:2.8rem;
+}
+.hero-img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  border-radius:28px;
+  border:1px solid rgba(15,61,46,0.08);
+}
+.hero-card{
+  position:absolute;bottom:2.5rem;left:-1.5rem;
+  background:#fff;border-radius:999px;padding:.7rem 1.1rem;
+  box-shadow:0 18px 44px rgba(15,61,46,.2);
+  min-width:260px;
+  display:flex;align-items:center;gap:.8rem;
+  animation:float 4s ease-in-out infinite;
+}
+.hero-card-icon{
+  width:42px;height:42px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,201,69,.28);color:var(--green);
+  flex-shrink:0;
+}
+.hero-card-icon svg{width:20px;height:20px}
+.hero-card-meta{display:flex;flex-direction:column;gap:.1rem}
+.hero-card-label{font-size:.72rem;color:var(--text-muted)}
+.hero-card-value{font-family:'DM Serif Display',serif;font-size:1.2rem;font-weight:700;color:var(--green)}
+.hero-card-sub{font-size:.75rem;color:var(--text-muted)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* WHO */
+.who{background:#fff}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.who-cards{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.who-card{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.4rem;border-radius:var(--radius-sm);
+  background:var(--cream);
+  box-shadow:0 14px 32px rgba(15,61,46,.08);
+  transition:box-shadow .2s,transform .2s;
+}
+.who-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.who-card-icon{
+  width:44px;height:44px;border-radius:.75rem;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--green);
+}
+.who-card-icon.green{background:rgba(15,61,46,.1)}
+.who-card-icon.yellow{background:rgba(255,201,69,.2);color:#7A5800}
+.who-card-icon.orange{background:rgba(255,140,66,.15);color:#a04800}
+.who-card-title{font-weight:700;color:var(--green);margin-bottom:.25rem;font-size:.95rem}
+.who-card-desc{font-size:.85rem;line-height:1.55}
+.who-visual{
+  height:460px;border-radius:var(--radius);overflow:hidden;
+  background:var(--cream-dark);
+  background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&auto=format&fit=crop&q=80');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  position:relative;display:flex;align-items:center;justify-content:center;
+}
+.who-visual::before{
+  content:"";
+  position:absolute;inset:0;
+  background:rgba(255,246,233,0.78);
+  z-index:0;
+}
+.who-visual-inner{text-align:center;padding:2rem}
+.who-visual-inner{position:relative;z-index:1}
+.who-visual-emoji{font-size:5rem;display:block;margin-bottom:1rem}
+.who-visual-text{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--green);font-style:italic;line-height:1.3}
+
+/* HOW */
+.how{background:var(--cream)}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:3rem 0}
+.how-step{
+  background:#fff;border-radius:var(--radius);padding:2rem;
+  position:relative;overflow:hidden;
+  box-shadow:0 16px 36px rgba(15,61,46,.08);
+  transition:box-shadow .2s,transform .2s;
+}
+.how-step:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.how-step-num{
+  font-family:'DM Serif Display',serif;font-size:4rem;color:var(--green);
+  line-height:1;margin-bottom:.8rem;opacity:.6;
+}
+.how-step-title{font-weight:700;color:var(--green);font-size:1rem;margin-bottom:.5rem}
+.how-step-desc{font-size:.88rem;line-height:1.6}
+.how-step-accent{
+  position:absolute;top:0;right:0;width:60px;height:60px;
+  border-radius:0 var(--radius) 0 60px;
+}
+.how-step:nth-child(1) .how-step-accent{background:rgba(255,201,69,.25)}
+.how-step:nth-child(2) .how-step-accent{background:rgba(255,140,66,.2)}
+.how-step:nth-child(3) .how-step-accent{background:rgba(166,196,162,.3)}
+.how-features{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:0 auto 2.5rem;max-width:820px}
+.how-feat{
+  padding:.9rem 1rem;border-radius:var(--radius-sm);
+  background:var(--green);color:#fff;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+}
+.how-feat-text{font-size:.85rem;font-weight:500;line-height:1.4}
+
+/* WHY */
+.why{background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:2.5rem 0}
+.why-card{
+  padding:1.4rem 1.6rem;border-radius:var(--radius-sm);
+  background:var(--cream);
+  box-shadow:0 14px 30px rgba(15,61,46,.08);
+  transition:box-shadow .2s,transform .2s;
+  display:flex;align-items:flex-start;
+}
+.why-card-title,.why-card-desc{margin-left:0}
+.why-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.why-card-emoji{margin-bottom:.8rem;color:var(--green)}
+.why-card-title{font-weight:700;color:var(--green);font-size:.95rem;margin-bottom:.4rem}
+.why-card-desc{font-size:.83rem;line-height:1.55}
+.why-quote{
+  background:var(--green);color:#fff;
+  border-radius:var(--radius);padding:3rem;
+  text-align:center;margin:2.5rem 0;position:relative;overflow:hidden;
+}
+.why-quote::before{
+  content:'"';font-family:'DM Serif Display',serif;font-size:10rem;
+  color:rgba(255,255,255,.07);position:absolute;top:-2rem;left:1rem;line-height:1;
+}
+.why-quote-text{
+  font-family:'DM Serif Display',serif;font-size:1.6rem;font-style:italic;
+  color:#fff;position:relative;z-index:1;line-height:1.4;
+}
+.why-quote-text em{color:var(--yellow);font-style:normal}
+
+/* FORM */
+.form-section{background:var(--cream)}
+.form-wrapper{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
+.form-left h2{margin-bottom:1rem}
+.form-left p{margin-bottom:2rem;font-size:.95rem}
+.form-perks{display:flex;flex-direction:column;gap:.8rem;margin-top:2rem}
+.form-perk{
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.88rem;color:var(--text-muted);
+}
+.form-perk-check{
+  width:22px;height:22px;border-radius:50%;flex-shrink:0;
+  background:rgba(15,61,46,.1);display:flex;align-items:center;justify-content:center;
+  color:var(--green);font-size:.75rem;font-weight:700;
+}
+.form-card{
+  background:#fff;border-radius:var(--radius);padding:2.5rem;
+  box-shadow:var(--shadow-lg);
+}
+.form-progress-wrap{margin-bottom:1.5rem}
+.form-progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.form-progress-label{font-size:.8rem;color:var(--text-muted);font-weight:500}
+.form-progress-pct{font-size:.8rem;color:var(--green);font-weight:700}
+.progress-track{height:5px;background:rgba(15,61,46,.1);border-radius:3px;overflow:hidden}
+.progress-bar{height:100%;background:var(--green);border-radius:3px;transition:width .5s ease}
+.form-header{margin:1.2rem 0 1.4rem}
+.form-step-title{font-family:'DM Serif Display',serif;font-size:1.6rem;line-height:1.2;color:var(--green);margin-bottom:.35rem}
+.form-step-sub{color:var(--text-muted);font-size:.95rem;line-height:1.5}
+.form-label{display:block;font-size:.86rem;color:var(--green);font-weight:600;margin:0 0 .4rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-field.form-full{grid-column:1 / -1}
+.form-field{margin-bottom:1rem}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:.85rem 1.1rem;
+  border:1.5px solid rgba(15,61,46,.15);border-radius:var(--radius-sm);
+  font-family:'Satoshi',sans-serif;font-size:.95rem;color:var(--text);
+  background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{
+  border-color:var(--green);box-shadow:0 0 0 3px rgba(15,61,46,.08);
+}
+.form-input::placeholder,.form-textarea::placeholder{color:#aaa}
+.form-textarea{resize:none;min-height:90px}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230F3D2E' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer}
+.form-options{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.form-option{
+  padding:.7rem 1rem;border:1.5px solid rgba(15,61,46,.15);border-radius:.75rem;
+  font-size:.85rem;cursor:pointer;text-align:center;transition:all .2s;
+  background:#fff;color:var(--text-muted);font-family:'Satoshi',sans-serif;
+}
+.form-option:hover,.form-option.selected{
+  border-color:var(--green);background:rgba(15,61,46,.06);color:var(--green);font-weight:500;
+}
+.form-checkbox-row{display:flex;align-items:flex-start;gap:.75rem;margin-top:.5rem}
+.form-checkbox{width:18px;height:18px;accent-color:var(--green);margin-top:2px;flex-shrink:0}
+.form-checkbox-label{font-size:.83rem;color:var(--text-muted);line-height:1.5}
+.form-nav{display:flex;gap:1rem;margin-top:1.5rem}
+.form-btn-prev{
+  flex:1;padding:.85rem;border-radius:3rem;
+  border:1.5px solid rgba(15,61,46,.2);background:transparent;
+  font-family:'Satoshi',sans-serif;font-size:.9rem;color:var(--text-muted);
+  cursor:pointer;transition:all .2s;
+}
+.form-btn-prev:hover{background:var(--cream);border-color:var(--green)}
+.form-btn-next{
+  flex:2;padding:.85rem;border-radius:3rem;
+  background:var(--green);color:#fff;border:none;
+  font-family:'Satoshi',sans-serif;font-size:.9rem;font-weight:600;
+  cursor:pointer;transition:background .2s,transform .15s;
+}
+.form-btn-next:hover{background:#1a5c44;transform:translateY(-1px)}
+.form-btn-next.yellow{background:var(--yellow);color:var(--green)}
+.form-btn-next.yellow:hover{background:#ffb800}
+.form-microcopy{font-size:.75rem;color:var(--text-muted);text-align:center;margin-top:.8rem}
+.form-success{text-align:center;padding:2rem 1rem}
+.form-success-emoji{font-size:3rem;margin-bottom:1rem}
+.form-success-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--green);margin-bottom:.8rem}
+.form-success-text{font-size:.9rem;color:var(--text-muted);line-height:1.65}
+
+/* SOCIAL PROOF */
+.proof{background:var(--green)}
+.proof h2{color:#fff;text-align:center;margin-bottom:.8rem}
+.proof-sub{text-align:center;color:rgba(255,255,255,.65);margin-bottom:3rem}
+.proof-logos{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.proof-logo-card{
+  background:rgba(255,255,255,.08);
+  border-radius:var(--radius-sm);padding:1.2rem 2rem;
+  display:flex;align-items:center;justify-content:center;
+  min-width:140px;
+}
+.proof-logo-placeholder{
+  display:flex;align-items:center;gap:.7rem;
+  color:rgba(255,255,255,.7);font-size:.85rem;font-weight:500;
+}
+.proof-logo-dot{width:28px;height:28px;border-radius:50%;flex-shrink:0}
+
+/* FAQ */
+.faq{background:var(--cream-dark)}
+.faq-list{margin-top:2.5rem;max-width:720px;margin-left:auto;margin-right:auto}
+.faq-item{
+  background:#fff;border-radius:1rem;margin-bottom:.9rem;
+  box-shadow:0 12px 28px rgba(15,61,46,.08);
+}
+.faq-q{
+  padding:1.2rem 1.4rem;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  font-weight:600;font-size:.95rem;color:var(--green);user-select:none;
+}
+.faq-arrow{
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(15,61,46,.08);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .2s,transform .3s;font-size:.7rem;color:var(--green);
+}
+.faq-item.open .faq-arrow{background:var(--green);color:#fff;transform:rotate(180deg)}
+.faq-a{
+  max-height:0;overflow:hidden;font-size:.88rem;color:var(--text-muted);
+  line-height:1.7;transition:max-height .4s ease,padding .3s;
+  padding:0 1.4rem;
+}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:1.2rem}
+
+/* FOOTER */
+footer{background:var(--green);padding:4rem;color:rgba(255,255,255,.7)}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.footer-logo{display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem}
+.footer-logo-mark{width:32px;height:32px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.footer-logo-text{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#fff}
+.footer-tagline{font-style:italic;font-size:.9rem;color:rgba(255,255,255,.5);margin-bottom:1rem}
+.footer-email{font-size:.88rem;color:var(--yellow)}
+.footer-col h4{color:#fff;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;font-weight:600}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li a{font-size:.85rem;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
+.footer-bottom-left{color:rgba(255,255,255,.35)}
+.linkedin-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.45rem 1rem;border-radius:3rem;
+  border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);
+  font-size:.78rem;text-decoration:none;transition:all .2s;
+}
+.linkedin-btn:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+/* STICKY MOBILE CTA */
+.sticky-cta{
+  display:none;position:fixed;bottom:1.2rem;left:1.2rem;right:1.2rem;z-index:998;
+  background:var(--yellow);color:var(--green);padding:1rem;border-radius:3rem;
+  font-family:'Satoshi',sans-serif;font-size:.95rem;font-weight:700;
+  text-align:center;text-decoration:none;box-shadow:var(--shadow-lg);
+  transition:background .2s;
+}
+.sticky-cta:hover{background:#ffb800}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:6rem}
+  .hero-right{height:300px;margin-top:1rem}
+  .hero-left{padding:4rem 2rem 3rem}
+  .who-grid{grid-template-columns:1fr}
+  .who-visual{height:260px}
+  .how-steps,.how-features,.why-grid{grid-template-columns:1fr}
+  .form-wrapper{grid-template-columns:1fr;gap:2.5rem}
+  .form-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+  .sticky-cta{display:none}
+  .nav-cta{display:inline-flex;padding:.6rem 1.1rem;font-size:.8rem}
+  section{padding:4rem 2rem}
+  nav{padding:.9rem 1.5rem}
+  .form-options{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark">
+      <img class="nav-logo-img" src="../assets/images/Logo_Il-est-midi.png" alt="Il Est Midi" />
+    </div>
+  </a>
+  <a class="nav-cta" href="#questionnaire">S'inscrire</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left reveal">
+    <h1>Le meilleur moment de la journée <span>arrive au bureau.</span></h1>
+    <p class="hero-sub">Offrez à vos collaborateurs une expérience déjeuner variée et conviviale grâce à des foodtrucks sélectionnés pour votre entreprise.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#questionnaire">Je veux en bénéficier</a>
+    </div>
+  </div>
+  <div class="hero-right reveal reveal-delay-2">
+    <img class="hero-img" src="https://images.pexels.com/photos/5794351/pexels-photo-5794351.jpeg" alt="Equipe en pause dejeuner avec foodtruck" loading="eager" decoding="async" fetchpriority="high" />
+    <div class="hero-card">
+      <div class="hero-card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="icon icon-line">
+          <rect x="3" y="6" width="18" height="14" rx="2" />
+          <path d="M8 4v4M16 4v4M3 10h18" />
+          <path d="M9 15l2 2 4-4" />
+        </svg>
+      </div>
+      <div class="hero-card-meta">
+        <div class="hero-card-label">Cette semaine</div>
+        <div class="hero-card-value">+12 entreprises</div>
+        <div class="hero-card-sub">inscrites ✓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="who" id="quoi">
+  <div class="container">
+    <div class="who-grid">
+      <div class="reveal">
+        <h2 style="margin-bottom:1rem">Une solution simple pour organiser des foodtrucks en entreprise</h2>
+        <p style="margin-bottom:1.8rem">Il Est Midi connecte votre entreprise avec des foodtrucks sélectionnés et coordonne des venues régulières sur site. Une pause déjeuner variée, sans charge opérationnelle.</p>
+        <a class="btn-primary" href="#questionnaire">En savoir plus</a>
+        <div class="who-cards">
+          <div class="who-card">
+            <div class="who-card-icon green">
+              <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 3v6c0 4.2-3 7.8-7 9-4-1.2-7-4.8-7-9V6l7-3z" />
+                <path d="M9.5 12l2 2 3.5-3.5" />
+              </svg>
+            </div>
+            <div>
+              <div class="who-card-title">Foodtrucks soigneusement sélectionnés</div>
+              <div class="who-card-desc">Chaque partenaire est évalué sur la qualité, l'hygiène et la variété de son offre.</div>
+            </div>
+          </div>
+          <div class="who-card">
+            <div class="who-card-icon yellow">
+              <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8" />
+                <path d="M12 8v4l3 2" />
+                <path d="M8 12h.01M16 12h.01" />
+              </svg>
+            </div>
+            <div>
+              <div class="who-card-title">Installation simple et rapide</div>
+              <div class="who-card-desc">Nous gérons toute la logistique. Vous n'avez qu'à accueillir vos équipes.</div>
+            </div>
+          </div>
+          <div class="who-card">
+            <div class="who-card-icon orange">
+              <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10" cy="9" r="2.5" />
+                <circle cx="16" cy="9" r="2.5" />
+                <path d="M4 19c.8-2.8 3.3-4.5 6-4.5" />
+                <path d="M20 19c-.8-2.8-3.3-4.5-6-4.5" />
+                <path d="M9 15c1 .8 2.2 1.2 3 1.2s2-.4 3-1.2" />
+              </svg>
+            </div>
+            <div>
+              <div class="who-card-title">Expérience appréciée des collaborateurs</div>
+              <div class="who-card-desc">Un moment convivial qui renforce la cohésion et le bien-être au travail.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="who-visual reveal reveal-delay-2">
+        <div class="who-visual-inner">
+          <div class="who-visual-text">"La pause déjeuner devient le moment préféré de vos équipes."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section class="how" id="pour-qui">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 1rem">
+      <h2>Une solution pensée pour améliorer votre expérience déjeuner du midi</h2>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal reveal-delay-1">
+        <div class="how-step-accent"></div>
+        <div class="how-step-num">01</div>
+        <div class="how-step-title">Des pauses déjeuner innovées qui cassent le rythme</div>
+        <div class="how-step-desc">Des pauses mal structurées affectent la ponctualité et la dynamique interne. Mettez en place une solution fiable, cadrée et fluide.</div>
+      </div>
+      <div class="how-step reveal reveal-delay-2">
+        <div class="how-step-accent"></div>
+        <div class="how-step-num">02</div>
+        <div class="how-step-title">Un manque de variété qui démotive</div>
+        <div class="how-step-desc">Une offre répétitive réduit l’adhésion des équipes. Mettez en place une expérience renouvelée qui maintient l’engagement.</div>
+      </div>
+      <div class="how-step reveal reveal-delay-3">
+        <div class="how-step-accent"></div>
+        <div class="how-step-num">03</div>
+        <div class="how-step-title">Une logistique interne trop lourde à gérer</div>
+        <div class="how-step-desc">La gestion d’une solution déjeuner devient chronophage. Externalisez la coordination pour gagner en simplicité et en fiabilité.</div>
+      </div>
+    </div>
+    <div style="text-align:center" class="reveal">
+      <a class="btn-primary" href="#questionnaire">Trouver ma solution</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="pourquoi">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 1rem">
+      <h2>Pourquoi les entreprises nous rejoignent</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-card-content">
+          <div class="why-card-title">Matching intelligent entre entreprises et foodtrucks</div>
+          <div class="why-card-desc">Une sélection précise selon vos contraintes, volumes et préférences pour garantir une expérience cohérente.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-content">
+          <div class="why-card-title">Approche sur-mesure et flexible</div>
+          <div class="why-card-desc">Fréquence, jours, formats : chaque mise en place est adaptée à votre organisation et à vos enjeux.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-content">
+          <div class="why-card-title">Expérience collaborateur renforcée</div>
+          <div class="why-card-desc">Un moment attendu, régulier et qualitatif qui valorise l’expérience au travail.</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center" class="reveal">
+      <a class="btn-yellow" href="#questionnaire">Je m'inscris</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONNAIRE -->
+<section class="form-section" id="questionnaire">
+  <div class="container">
+    <div class="form-wrapper">
+      <div class="form-left reveal">
+        <h2>Testez le concept dès maintenant</h2>
+        <p>Répondez à quelques questions pour rejoindre notre lancement pilote</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="form-card" id="form-card">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container" style="max-width:800px">
+    <h2 style="text-align:center;margin-bottom:.5rem" class="reveal">Vous vous demandez peut-être…</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q">Le service est-il sans engagement ?<div class="faq-arrow">▾</div></div>
+        <div class="faq-a">Oui, totalement. Vous êtes libre de tester le service et d'y mettre fin à tout moment, sans frais ni pénalité. Notre priorité est de vous convaincre par la qualité.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Comment sont sélectionnés les foodtrucks ?<div class="faq-arrow">▾</div></div>
+        <div class="faq-a">Chaque foodtruck passe par un processus de sélection rigoureux : qualité des produits, normes d'hygiène, ponctualité et diversité de l'offre. Seul le meilleur rejoint notre réseau.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Faut-il une grande place de stationnement ?<div class="faq-arrow">▾</div></div>
+        <div class="faq-a">Non. Un emplacement de 6 à 8 mètres est largement suffisant pour accueillir un foodtruck. Nous évaluons vos contraintes lors de notre échange et trouvons la meilleure configuration.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Peut-on commencer avec une seule date test ?<div class="faq-arrow">▾</div></div>
+        <div class="faq-a">Absolument. Nous proposons justement une date test pour vous permettre de voir la réaction de vos équipes avant de vous engager sur un planning récurrent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="icon icon-line" style="width:18px;height:18px">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+              <path d="M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" />
+            </svg>
+          </div>
+          <span class="footer-logo-text">Il Est Midi</span>
+        </div>
+        <div class="footer-tagline">Le déjeuner, réinventé.</div>
+        <a class="footer-email" href="mailto:hello@ilestmidi.fr">hello@ilestmidi.fr</a>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#quoi">Notre concept</a></li>
+          <li><a href="#questionnaire">Questionnaire</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-bottom-left">© 2026 Il Est Midi. Tous droits réservés.</span>
+      <a class="linkedin-btn" href="#" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<a class="sticky-cta" href="#questionnaire">S'inscrire</a>
+
+<script>
+// ===== REVEAL ON SCROLL =====
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+reveals.forEach(r => revealObs.observe(r));
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ===== FAQ =====
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+// ===== MULTI-STEP FORM =====
+const STEPS = [
+  {
+    id: 'company',
+    label: 'Etape 1 sur 4',
+    title: 'Parlons de votre entreprise',
+    subtitle: 'Quelques infos pour personnaliser notre approche.',
+    fields: [
+      {id: 'company', label: "Nom de l'entreprise", type: 'text', ph: 'Ex. Atelier Dupont', full: true},
+      {id: 'contact', label: 'Nom et prenom de la personne a contacter', type: 'text', ph: 'Ex. Marie Dupont', full: true},
+      {id: 'role', label: 'Fonction', type: 'text', ph: 'Ex. Office Manager', full: true},
+      {id: 'email', label: 'Adresse e-mail professionnelle', type: 'email', ph: 'Ex. marie@entreprise.fr'},
+      {id: 'phone', label: 'Numero de telephone', type: 'tel', ph: 'Ex. 06 12 34 56 78'},
+      {id: 'location', label: 'Où se situe votre entreprise ? (ville ou adresse)', type: 'text', ph: 'Ex. Lyon', full: true},
+      {
+        id: 'size',
+        label: 'Combien de collaborateurs travaillent sur ce site ? ',
+        type: 'options',
+        options: ['Moins de 20','20 a 50','50 a 100','100 a 300','Plus de 300'],
+        full: true
+      }
+    ]
+  },
+  {
+    id: 'needs',
+    label: 'Etape 2 sur 4',
+    title: 'Votre situation actuelle',
+    subtitle: 'Identifions vos besoins principaux.',
+    fields: [
+      {
+        id: 'current',
+        label: 'Disposez-vous actuellement d une solution de restauration sur place ? ',
+        type: 'options',
+        options: ['Oui','Non','Solution partielle mais insuffisante'],
+        full: true
+      },
+      {
+        id: 'problems',
+        label: 'Quels sont les principaux besoins ou problemes rencontres ? ',
+        type: 'multiOptions',
+        options: [
+          'Peu d options de restauration a proximite',
+          'Manque de variete',
+          'Temps de pause limite',
+          'Difficulte a federer les equipes',
+          'Offre actuelle peu satisfaisante'
+        ],
+        full: true
+      }
+    ]
+  },
+  {
+    id: 'planning',
+    label: 'Etape 3 sur 4',
+    title: 'Organisation souhaitée',
+    subtitle: 'Frequence, jours et preferences culinaires.',
+    fields: [
+      {
+        id: 'frequency',
+        label: 'A quelle frequence souhaiteriez-vous accueillir un foodtruck ? ',
+        type: 'options',
+        options: ['Une fois par mois','Deux fois par mois','Une fois par semaine','Plusieurs fois par semaine'],
+        full: true
+      },
+      {
+        id: 'days',
+        label: 'Quel(s) jour(s) vous conviendrai(en)t le mieux ? ',
+        type: 'multiOptions',
+        options: ['Lundi','Mardi','Mercredi','Jeudi','Vendredi'],
+        full: true
+      },
+      {
+        id: 'cuisine',
+        label: 'Quel type de cuisine interesserait le plus vos collaborateurs ? ',
+        type: 'multiOptions',
+        options: ['Burgers','Cuisine du monde','Cuisine saine','Italienne','Asiatique','Vegetarienne','Desserts','Tous types'],
+        full: true
+      }
+    ]
+  },
+  {
+    id: 'logistics',
+    label: 'Etape 4 sur 4',
+    title: 'Logistique et test',
+    subtitle: 'Validons la faisabilite et l interesse.',
+    fields: [
+      {
+        id: 'space',
+        label: 'Disposez-vous d un emplacement pour accueillir un foodtruck ? ',
+        type: 'options',
+        options: ['Oui','Non','A etudier'],
+        full: true
+      },
+      {
+        id: 'preorder',
+        label: 'Souhaitez-vous proposer un systeme de precommande a vos collaborateurs ? ',
+        type: 'options',
+        options: ['Oui','Non','Pourquoi pas'],
+        full: true
+      },
+      {
+        id: 'contactTest',
+        label: 'Souhaitez-vous etre contacte pour tester gratuitement notre solution ? ',
+        type: 'options',
+        options: ['Oui, avec plaisir !','J aimerais en savoir plus','Non merci'],
+        full: true
+      }
+    ]
+  }
+];
+
+let currentStep = 0;
+let formData = {};
+
+function escapeAttr(value) {
+  return value.replace(/"/g, '&quot;');
+}
+
+function renderForm() {
+  const step = STEPS[currentStep];
+  const pct = Math.round((currentStep / (STEPS.length - 1)) * 100);
+  const card = document.getElementById('form-card');
+
+  const fieldHtml = step.fields.map((field) => {
+    if(field.type === 'text' || field.type === 'email' || field.type === 'tel') {
+      return `
+        <div class="form-field ${field.full ? 'form-full' : ''}">
+          <label class="form-label" for="f-${field.id}">${field.label}</label>
+          <input class="form-input" id="f-${field.id}" type="${field.type}" placeholder="${field.ph || ''}" value="${formData[field.id] || ''}" />
+        </div>
+      `;
+    }
+    if(field.type === 'options' || field.type === 'multiOptions') {
+      const isMulti = field.type === 'multiOptions';
+      const selected = formData[field.id] || (isMulti ? [] : '');
+      const btns = field.options.map((opt) => {
+        const safeOpt = escapeAttr(opt);
+        const isSelected = isMulti ? selected.includes(opt) : selected === opt;
+        return `<button type="button" class="form-option${isSelected ? ' selected' : ''}" data-option-group="${field.id}" data-value="${safeOpt}" data-multi="${isMulti}">${opt}</button>`;
+      }).join('');
+      return `
+        <div class="form-field form-full">
+          <div class="form-label">${field.label}</div>
+          <div class="form-options">${btns}</div>
+        </div>
+      `;
+    }
+    return '';
+  }).join('');
+
+  const isLast = currentStep === STEPS.length - 1;
+  const isFirst = currentStep === 0;
+
+  card.innerHTML = `
+    <div class="form-progress-wrap">
+      <div class="form-progress-meta">
+        <span class="form-progress-label">${step.label}</span>
+        <span class="form-progress-pct">${pct}%</span>
+      </div>
+      <div class="progress-track"><div class="progress-bar" style="width:${pct}%"></div></div>
+    </div>
+    <div class="form-header">
+      <div class="form-step-title">${step.title}</div>
+      <div class="form-step-sub">${step.subtitle}</div>
+    </div>
+    <div id="form-fields" class="form-grid">${fieldHtml}</div>
+    <div class="form-nav">
+      <button class="form-btn-prev" onclick="prevStep()" style="opacity:${isFirst?'.35':'1'};pointer-events:${isFirst?'none':'auto'}">← Précédent</button>
+      <button class="form-btn-next ${isLast?'yellow':''}" onclick="nextStep()">${isLast?'Valider ma demande':'Continuer'}</button>
+    </div>
+  `;
+
+  document.querySelectorAll('[data-option-group]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.optionGroup;
+      const val = btn.dataset.value;
+      const multi = btn.dataset.multi === 'true';
+      selectOption(id, val, btn, multi);
+    });
+  });
+
+  const firstInput = card.querySelector('input, textarea, select');
+  if(firstInput && window.location.hash === '#questionnaire') setTimeout(()=>firstInput.focus(), 50);
+}
+
+function selectOption(id, val, el, isMulti) {
+  if(isMulti) {
+    const current = formData[id] || [];
+    if(current.includes(val)) {
+      formData[id] = current.filter(v => v !== val);
+      el.classList.remove('selected');
+    } else {
+      formData[id] = [...current, val];
+      el.classList.add('selected');
+    }
+    return;
+  }
+  formData[id] = val;
+  document.querySelectorAll(`[data-option-group="${id}"]`).forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function nextStep() {
+  const step = STEPS[currentStep];
+  step.fields.forEach((field) => {
+    if(field.type === 'text' || field.type === 'email' || field.type === 'tel') {
+      const inp = document.getElementById(`f-${field.id}`);
+      if(inp) formData[field.id] = inp.value;
+    }
+  });
+  if(currentStep < STEPS.length - 1) {
+    currentStep++;
+    renderForm();
+    document.getElementById('form-card').scrollIntoView({behavior:'smooth', block:'nearest'});
+  } else {
+    showSuccess();
+  }
+}
+
+function prevStep() {
+  if(currentStep > 0) { currentStep--; renderForm(); }
+}
+
+function showSuccess() {
+  document.getElementById('form-card').innerHTML = `
+    <div class="form-success">
+      <div class="form-success-emoji" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="icon icon-line" style="width:36px;height:36px">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M8.5 12.5l2.5 2.5 5-5" />
+        </svg>
+      </div>
+      <div class="form-success-title">Merci pour votre intérêt !</div>
+      <p class="form-success-text" style="color:var(--text-muted)">
+        Vous faites partie des premières entreprises à réinventer la pause déjeuner.<br><br>
+        Notre équipe vous contactera en priorité lors du lancement dans votre région.
+      </p>
+      <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;background:var(--cream);padding:.6rem 1.2rem;border-radius:3rem;font-size:.82rem;color:var(--green);font-weight:500">
+        ✓ Candidature enregistrée
+      </div>
+    </div>
+  `;
+}
+
+renderForm();
+</script>
+</body>
+</html>

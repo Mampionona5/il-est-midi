@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/foodtruck", "destination": "/pages/landing-foodtruck.html" },
+    { "source": "/entreprise", "destination": "/pages/landing-entreprise.optimized.html" }
+  ]
+}

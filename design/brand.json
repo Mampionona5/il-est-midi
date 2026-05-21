@@ -1,0 +1,83 @@
+{
+  "brand_identity": {
+    "name": "IL EST MIDI",
+    "tagline": "LE DÉJEUNER RÉINVENTÉ",
+    "ux_philosophy": "Minimalist, clean, airy, and high-contrast space layout. Inspired by swile.co. Maximize whitespace (negative space) to ensure readability and a premium feel."
+  },
+  "color_palette": {
+    "primary": {
+      "hex": "#0F3D2E",
+      "name": "Deep Forest Green",
+      "usage_weight_percentage": 30,
+      "roles": ["Main brand color", "Headings", "Primary buttons background", "Dark section backgrounds"]
+    },
+    "secondary": {
+      "hex": "#A6C4A2",
+      "name": "Sage Green",
+      "usage_weight_percentage": 15,
+      "roles": ["Subtle backgrounds", "Secondary accents", "Card borders"]
+    },
+    "accent_warm": {
+      "hex": "#FFC945",
+      "name": "Sun Yellow",
+      "usage_weight_percentage": 10,
+      "roles": ["Logo icon", "Key call-to-actions text highlights", "Micro-interactions"]
+    },
+    "accent_vibrant": {
+      "hex": "#FF8C42",
+      "name": "Lunch Orange",
+      "usage_weight_percentage": 5,
+      "roles": ["Alerts", "Specific tags", "High-importance micro-details"]
+    },
+    "background_base": {
+      "hex": "#FFF6E9",
+      "name": "Warm Cream",
+      "usage_weight_percentage": 40,
+      "roles": ["Main website background", "Default section background"]
+    }
+  },
+  "typography": {
+    "headings": {
+      "font_family": "DM Serif Display",
+      "category": "Serif",
+      "allowed_weights": ["Regular"],
+      "color_default": "#0F3D2E",
+      "cases": "Sentence case or Upper case for main titles"
+    },
+    "body_and_interface": {
+      "font_family": "Satoshi",
+      "category": "Sans-Serif",
+      "allowed_weights": ["Regular", "Medium", "Bold"],
+      "color_default": "#0F3D2E",
+      "hierarchy": {
+        "body": { "weight": "Regular", "opacity": 0.9 },
+        "buttons_and_navigation": { "weight": "Medium", "letter_spacing": "0.05em" }
+      }
+    }
+  },
+  "layout_and_proportions": {
+    "whitespace_ratio": "High (Airy design system)",
+    "section_padding_vertical": "clamp(4rem, 8vw, 12rem)",
+    "grid_gap": "2rem",
+    "border_radius": {
+      "buttons": "100px",
+      "cards": "16px",
+      "ui_elements": "12px"
+    },
+    "max_content_width": "1200px"
+  },
+  "imagery_and_art_direction": {
+    "style": "Flat modern vector illustrations mixed with bright, clean, human-centric photography",
+    "illustration_colors_allowed": ["#A6C4A2", "#FFC945", "#FF8C42", "#0F3D2E"],
+    "composition": "Centered, uncluttered compositions. Characters should look relaxed, social, and professional.",
+    "ui_mockup_behavior": "Cards must use #FFF6E9 or White (#FFFFFF) backgrounds with #0F3D2E typography to guarantee contrast."
+  },
+  "strict_constraints": {
+    "forbidden_actions": [
+      "Do not use pure black (#000000) for text or backgrounds.",
+      "Do not use gradients on backgrounds or buttons.",
+      "Do not exceed a 30% density of Deep Forest Green (#0F3D2E) on a single screen page to maintain the airy Swile-like feeling.",
+      "Do not apply borders to structural containers; use whitespace or subtle background color shifts (#A6C4A2 at low opacity) for separation."
+    ]
+  }
+}
